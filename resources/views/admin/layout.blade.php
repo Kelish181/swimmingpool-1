@@ -143,12 +143,12 @@
                                 </a>
                             </li>
                             <b class="ms-2 m-1">INSTALLATION</b>
-                            <li class="nav-main-item">
+                            <!-- <li class="nav-main-item">
                                 <a class="nav-main-link @yield('sacrificialpool_select')" href="{{route('admin.sacrificialpool.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
                                     <span class="nav-main-link-name">Sacrificial Pools</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-main-item">
                                 <a class="nav-main-link @yield('watervolume_select')" href="{{route('admin.watervolume.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
