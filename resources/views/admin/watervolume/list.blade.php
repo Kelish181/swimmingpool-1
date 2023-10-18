@@ -4,7 +4,7 @@
 @section('container')
 
 <div class="container-fluid">
-    <h5 class="card-title fw-semibold mb-4">Water Volumeadsa</h5>
+    <h5 class="card-title fw-semibold mb-4">Water Volume</h5>
     <div class="card">
         <div class="card-body">
         <a href="{{ route('admin.watervolume.add')}}" type="button"   class="btn btn-sm btn-primary float-end" data-bs-toggle="tooltip" title="Add Catgory">
