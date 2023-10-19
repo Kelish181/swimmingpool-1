@@ -1,46 +1,34 @@
 @extends('admin/layout')
-@section('page_title','Registered Staff')
-@section('registeredstaff_select','active')
+@section('page_title','Ozone')
+@section('ozone_select','active')
 @section('container')
 
 <div class="container-fluid">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Registered Staff</h5>
+                <h5 class="card-title fw-semibold mb-4">Ozone</h5>
                 <div class="card">
                     <div class="card-body">
                         <form id="productform" >
                             @csrf
-                            <input type="hidden" value="{{$user->id ?? '0'}}" name="id">
-                            <input type="hidden" value="3" name="user_type">
+                            <input type="hidden" value="{{$id ?? '0'}}" name="id">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Water Volune</label>
+                                <select class="form-control" name="watervolume_id">
+                                <option disabled selected value="">Select water volume</option>
+                                    @foreach($watervolume as $list)
+                                        <option value="{{ $list->id ?? '' }}" @if($watervolume_id == $list->id) selected @endif>{{ $list->name ?? '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name"
-                                    aria-describedby="emailHelp" name="name" value="{{$user->name ?? ''}}" placeholder="Enter name">
+                                    aria-describedby="emailHelp" name="name" value="{{$name ?? ''}}" placeholder="Enter Name">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address"
-                                    aria-describedby="emailHelp" name="address" value="{{$user->address ?? ''}}" placeholder="Enter Address">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email"
-                                    aria-describedby="emailHelp" name="email" value="{{$user->email ?? ''}}" placeholder="Enter Email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Phone</label>
-                                <input type="text" class="form-control" id="phone"
-                                    aria-describedby="emailHelp" name="phone" value="{{$user->phone ?? ''}}" placeholder="Enter Phone">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Quote Status</label>
-                                <input type="text" class="form-control" id="quotestatus"
-                                    aria-describedby="emailHelp" name="quotestatus" value="{{$user->quotestatus ?? ''}}" placeholder="Enter Quote Status">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password"
-                                    aria-describedby="emailHelp" name="password"  placeholder="Enter Password">
+                                <label for="exampleInputEmail1" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price"
+                                    aria-describedby="emailHelp" name="price" value="{{$price ?? ''}}" placeholder="Enter price">
                             </div>
                             <button  value="submit" id="submit" class="btn btn-primary">Submit</button>
                         </form>
@@ -50,7 +38,6 @@
         </div>
     </div>
 </div>
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
@@ -68,7 +55,7 @@
             // Perform AJAX request to submit the form data
             $.ajax({
                 type: 'POST',
-                url: '{{ route('admin.staff.staff_store') }}',
+                url: '{{ route('admin.ozone.store') }}',
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -82,7 +69,7 @@
                             response.message,
                             'success'
                         );
-                        window.location.href = "{{ route('admin.staff.list') }}";
+                        window.location.href = "{{ route('admin.ozone.list') }}";
                     } else {
                         Swal.fire({
                             icon: 'error',

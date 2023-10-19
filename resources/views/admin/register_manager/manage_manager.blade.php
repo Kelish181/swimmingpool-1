@@ -50,57 +50,55 @@
         </div>
     </div>
 </div>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
-   $(document).ready(function() {
-    // Event handler for form submission
-    $('#productform').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        $('#submit').html('Please Wait...');
-        $("#submit").attr("disabled", true);
+    $(document).ready(function() {
+        // Event handler for form submission
+        $('#productform').on('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-        var formData = new FormData($(this)[0]);
-        formData.append('_token', '{{ csrf_token() }}'); // Add CSRF token to form data
-        // formData.append('video', $('#video')[0].files[0]); // Add the file input to form data
+            var csrfToken = $(this).data('csrf-token'); // Access the CSRF token from the data attribute
+            var $submitButton = $('#submit');
+            $submitButton.html('Please Wait...').attr('disabled', true);
 
-        // Perform AJAX request to submit the form data
-        $.ajax({
-            type: 'POST',
-            url: '{{ route('admin.manager.manager_store') }}',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include CSRF token in request headers
-            },
-            success: function(response) {
-                if (response.success) {
-                    Swal.fire(
-                        'Good job!',
-                        response.message,
-                        'success'
-                        )
-                    $('#productform')[0].reset();
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                        })
+            var formData = new FormData($(this)[0]);
+
+            // Perform AJAX request to submit the form data
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('admin.manager.manager_store') }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // Include CSRF token from the data attribute
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire(
+                            'Good job!',
+                            response.message,
+                            'success'
+                        );
+                        window.location.href = "{{ route('admin.manager.list') }}";
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                        });
+                    }
+                    $submitButton.html('Submit').attr('disabled', false);
+                },
+                error: function(xhr) {
+                    alert('Error occurred during the AJAX request.');
+                    $submitButton.html('Submit').attr('disabled', false);
                 }
-                $('#submit').html('Submit');
-                $("#submit").attr("disabled", false);
-            },
-            error: function(xhr) {
-                alert('Error occurred during the AJAX request.');
-                $('#submit').html('Submit');
-                $("#submit").attr("disabled", false);
-            }
+            });
         });
     });
-});
-
 </script>
 
 @endsection

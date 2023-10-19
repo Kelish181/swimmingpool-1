@@ -7,7 +7,7 @@
     <h5 class="card-title fw-semibold mb-4">Registered User</h5>
     <div class="card">
         <div class="card-body">
-        <a href="{{ route('admin.user.manage_user')}}" type="button"   class="btn btn-sm btn-primary float-end" data-bs-toggle="tooltip" title="Add Catgory">
+        <a href="{{ route('admin.user.manage_user')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
                 <i class="fa fa-plus"></i> Add User
                 </a>
                 @if(session()->has('message'))
@@ -27,7 +27,7 @@
                     <i class="fa fa-fw fa-times ms-2"></i>
                   </div>
             @endif  
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable scroll-horizontal" id="FoamTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -39,31 +39,32 @@
                         <th scope="col">Ouote Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                 @foreach($user as $key => $lists)
-                 <tr>
-                 <td>{{$key + 1}}</td>
-                 <td><a href="{{ route('admin.user.user_edit' ,$lists->id)}}" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"  title="Edit Catgory">
-                 <i class="fa fa-pencil"></i>
-                </a>
-                <a href="{{ route('admin.user.delete', $lists->id) }}"
-   class="btn btn-sm btn-danger"
-   data-bs-toggle="tooltip"
-   title="Delete Catgory"
-   onclick="return confirm('Are you sure you want to delete this item?');">
-   <i class="fa fa-trash"></i>
-</a>
-</td>
-                 <td>{{$lists->name}}</td>
-                 <td>{{$lists->address}}</td>
-                 <td>{{$lists->email}}</td>
-                 <td>{{$lists->phone}}</td>
-                 <td>{{$lists->quotestatus}}</td>
-                  </tr>
-                  @endforeach
-                </tbody>
             </table>
         </div>
-    </di
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize DataTable
+        var table = $('#FoamTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('admin.user.getdatatable') }}",
+            columns: [
+                { data: 'id'},
+                { data: 'actions'},
+                { data: 'name'},
+                { data: 'address'},
+                { data: 'email'},
+                { data: 'phone'},
+                { data: 'quotestatus'},
+            ],
+            lengthMenu: [[50, 100, -1], [50, 100, 'All']],
+        });
+    });
+</script>
 
 @endsection

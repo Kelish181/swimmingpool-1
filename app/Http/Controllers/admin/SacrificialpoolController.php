@@ -6,14 +6,42 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\admin\Sacrificialpool;
+use DataTables;
+
 
 
 class SacrificialpoolController extends Controller
 {
     //User
     public function list(){
-        $result['sacrificial'] = Sacrificialpool::all();
-        return view('admin.sacrificialpool.list', $result);
+        return view('admin.sacrificialpool.list');
+    }
+
+    public function getdatatable(Request $request)
+    {
+
+        $Sacrificialpool = Sacrificialpool::select('*');
+        
+        $dataTable = Datatables::of($Sacrificialpool)
+                    ->addIndexColumn()
+                    ->addColumn('actions', function ($data) {
+                        $html = '<a href="' . route('admin.sacrificialpool.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                                    <i class="fa fa-edit"></i>
+                                </a>&nbsp;
+                                <a href="' . route('admin.sacrificialpool.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                                    <i class="fa fa-trash"></i>
+                                </a>';
+                        return $html;
+                    })                    
+                    ->editColumn('id', function ($data) {
+                        static $index = 1;
+                        return $index++;
+                    })
+                    ->rawColumns(['actions']);
+     
+        
+        return $dataTable->make();
+        // return response()->json($dataTable, 200);
     }
 
     public function manage_sacrificial(Request $request, $id = "")

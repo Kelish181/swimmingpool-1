@@ -8,15 +8,42 @@ use App\Models\WaterVolume;
 use App\Models\Pump;
 use App\Models\admin\Sacrificialpool;
 use Illuminate\Support\Facades\Validator;
+use DataTables;
+
 
 class PumpController extends Controller
 {
     public function list(){
-        $result['pump'] = Pump::join('water_volume', 'pump.watervolume_id', '=', 'water_volume.id')
+        
+        return view('admin.pump.list');
+    }
+
+    public function getdatatable(Request $request)
+{
+    $result['pump'] = Pump::join('water_volume', 'pump.watervolume_id', '=', 'water_volume.id')
             ->select('pump.*', 'water_volume.name as water_volume_name') // Select the columns you need from both tables
             ->get();
-        return view('admin.pump.list', $result);
-    }
+    $dataTable = Datatables::of($result['pump'])
+        ->addIndexColumn()
+        ->addColumn('actions', function ($data) {
+            $html = '<a href="' . route('admin.pump.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                        <i class="fa fa-edit"></i>
+                    </a>&nbsp;
+                    <a href="' . route('admin.pump.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                        <i class="fa fa-trash"></i>
+                    </a>';
+            return $html;
+        })
+        ->editColumn('id', function ($data) {
+            static $index = 1;
+            return $index++;
+        })
+        ->rawColumns(['actions'])
+        ->make(true); // Use true to enable JSON response
+
+    return $dataTable;
+    // return response()->json($dataTable, 200);
+}
 
     public function manage_pump(Request $request, $id = "")
     {

@@ -7,12 +7,41 @@ use Illuminate\Http\Request;
 use App\Models\WaterVolume;
 use App\Models\admin\Sacrificialpool;
 use Illuminate\Support\Facades\Validator;
+use DataTables;
+
 
 class WaterVolumeController extends Controller
 {
     public function list(){
         $result['watervolume'] = WaterVolume::all();
         return view('admin.watervolume.list', $result);
+    }
+
+    public function getdatatable(Request $request)
+    {
+
+        $WaterVolume = WaterVolume::select('*');
+        
+        $dataTable = Datatables::of($WaterVolume)
+                    ->addIndexColumn()
+                    ->addColumn('actions', function ($data) {
+                        $html = '<a href="' . route('admin.watervolume.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                                    <i class="fa fa-edit"></i>
+                                </a>&nbsp;
+                                <a href="' . route('admin.watervolume.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                                    <i class="fa fa-trash"></i>
+                                </a>';
+                        return $html;
+                    })                    
+                    ->editColumn('id', function ($data) {
+                        static $index = 1;
+                        return $index++;
+                    })
+                    ->rawColumns(['actions']);
+     
+        
+        return $dataTable->make();
+        // return response()->json($dataTable, 200);
     }
 
     public function manage_watervolume(Request $request, $id = "")

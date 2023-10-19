@@ -5,32 +5,32 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WaterVolume;
-use App\Models\Filter;
+use App\Models\Ozone;
 use App\Models\admin\Sacrificialpool;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
 
 
-class FilterController extends Controller
+class OzoneController extends Controller
 {
     public function list(){
-        
-        return view('admin.filter.list');
+       
+        return view('admin.ozone.list');
     }
 
     public function getdatatable(Request $request)
 {
-    $result['filter'] = Filter::join('water_volume', 'filter.watervolume_id', '=', 'water_volume.id')
-        ->select('filter.*', 'water_volume.name as water_volume_name')
-        ->get(); // Make sure to get the data using get() or first() to fetch the results
+    $result['ozone'] = Ozone::join('water_volume', 'ozones.watervolume_id', '=', 'water_volume.id')
+    ->select('ozones.*', 'water_volume.name as water_volume_name') // Select the columns you need from both tables
+    ->get();
 
-    $dataTable = Datatables::of($result['filter'])
+    $dataTable = Datatables::of($result['ozone'])
         ->addIndexColumn()
         ->addColumn('actions', function ($data) {
-            $html = '<a href="' . route('admin.filter.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+            $html = '<a href="' . route('admin.ozone.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
                         <i class="fa fa-edit"></i>
                     </a>&nbsp;
-                    <a href="' . route('admin.filter.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                    <a href="' . route('admin.ozone.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
                         <i class="fa fa-trash"></i>
                     </a>';
             return $html;
@@ -46,15 +46,14 @@ class FilterController extends Controller
     // return response()->json($dataTable, 200);
 }
 
-
-    public function manage_filter(Request $request, $id = "")
+    public function manage_Ozone(Request $request, $id = "")
     {
         if ($id > 0) {
-            $Filter = Filter::find($id);
-            $result['name'] = $Filter->name;
-            $result['price'] = $Filter->price;
-            $result['id'] = $Filter->id;
-            $result['watervolume_id'] = $Filter->watervolume_id;
+            $Ozone = Ozone::find($id);
+            $result['name'] = $Ozone->name;
+            $result['price'] = $Ozone->price;
+            $result['id'] = $Ozone->id;
+            $result['watervolume_id'] = $Ozone->watervolume_id;
         } else {
             $result['watervolume_id'] = '';
             $result['name'] = '';
@@ -62,7 +61,7 @@ class FilterController extends Controller
             $result['id'] = '';
         }
         $result['watervolume'] = WaterVolume::get();
-        return view('admin.filter.manage_filter', $result);
+        return view('admin.ozone.manage_ozone', $result);
     }
 
     public function store(Request $request)
@@ -84,17 +83,17 @@ class FilterController extends Controller
         $id = $request->input('id');
 
         if ($id > 0) {
-            $Filter = Filter::find($id);
-            $message = 'Filter updated successfully!';
+            $Ozone = Ozone::find($id);
+            $message = 'Ozone updated successfully!';
         } else {
-            $Filter = new Filter;
-            $message = 'Filter created successfully!';
+            $Ozone = new Ozone;
+            $message = 'Ozone created successfully!';
         }
 
-        $Filter->name = $request->input('name');
-        $Filter->price = $request->input('price');
-        $Filter->watervolume_id = $request->input('watervolume_id');
-        $Filter->save();
+        $Ozone->name = $request->input('name');
+        $Ozone->price = $request->input('price');
+        $Ozone->watervolume_id = $request->input('watervolume_id');
+        $Ozone->save();
 
         return response()->json([
             'success' => true,
@@ -104,9 +103,9 @@ class FilterController extends Controller
 
     public function delete($id)
     {
-        $Filter = Filter::findOrFail($id);
-        $Filter->delete();
-        $message = 'Filter delete successfully!';
-           return redirect('admin/filter')->with('delete', $message );
+        $Ozone = Ozone::findOrFail($id);
+        $Ozone->delete();
+        $message = 'Ozone delete successfully!';
+           return redirect('admin/ozone')->with('delete', $message );
     }
 }

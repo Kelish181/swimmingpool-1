@@ -5,32 +5,31 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WaterVolume;
-use App\Models\Filter;
+use App\Models\Vaccum;
 use App\Models\admin\Sacrificialpool;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
 
 
-class FilterController extends Controller
+class VaccumController extends Controller
 {
     public function list(){
         
-        return view('admin.filter.list');
+        return view('admin.vaccums.list');
     }
 
     public function getdatatable(Request $request)
 {
-    $result['filter'] = Filter::join('water_volume', 'filter.watervolume_id', '=', 'water_volume.id')
-        ->select('filter.*', 'water_volume.name as water_volume_name')
-        ->get(); // Make sure to get the data using get() or first() to fetch the results
-
-    $dataTable = Datatables::of($result['filter'])
+    $result['vaccum'] = Vaccum::join('water_volume', 'vaccums.watervolume_id', '=', 'water_volume.id')
+    ->select('vaccums.*', 'water_volume.name as water_volume_name') // Select the columns you need from both tables
+    ->get();
+    $dataTable = Datatables::of($result['vaccum'])
         ->addIndexColumn()
         ->addColumn('actions', function ($data) {
-            $html = '<a href="' . route('admin.filter.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+            $html = '<a href="' . route('admin.vaccum.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
                         <i class="fa fa-edit"></i>
                     </a>&nbsp;
-                    <a href="' . route('admin.filter.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                    <a href="' . route('admin.vaccum.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
                         <i class="fa fa-trash"></i>
                     </a>';
             return $html;
@@ -46,15 +45,14 @@ class FilterController extends Controller
     // return response()->json($dataTable, 200);
 }
 
-
-    public function manage_filter(Request $request, $id = "")
+    public function manage_vaccum(Request $request, $id = "")
     {
         if ($id > 0) {
-            $Filter = Filter::find($id);
-            $result['name'] = $Filter->name;
-            $result['price'] = $Filter->price;
-            $result['id'] = $Filter->id;
-            $result['watervolume_id'] = $Filter->watervolume_id;
+            $Vaccum = Vaccum::find($id);
+            $result['name'] = $Vaccum->name;
+            $result['price'] = $Vaccum->price;
+            $result['id'] = $Vaccum->id;
+            $result['watervolume_id'] = $Vaccum->watervolume_id;
         } else {
             $result['watervolume_id'] = '';
             $result['name'] = '';
@@ -62,7 +60,7 @@ class FilterController extends Controller
             $result['id'] = '';
         }
         $result['watervolume'] = WaterVolume::get();
-        return view('admin.filter.manage_filter', $result);
+        return view('admin.vaccums.manage_vaccums', $result);
     }
 
     public function store(Request $request)
@@ -84,17 +82,17 @@ class FilterController extends Controller
         $id = $request->input('id');
 
         if ($id > 0) {
-            $Filter = Filter::find($id);
-            $message = 'Filter updated successfully!';
+            $Vaccum = Vaccum::find($id);
+            $message = 'Vaccum updated successfully!';
         } else {
-            $Filter = new Filter;
-            $message = 'Filter created successfully!';
+            $Vaccum = new Vaccum;
+            $message = 'Vaccum created successfully!';
         }
 
-        $Filter->name = $request->input('name');
-        $Filter->price = $request->input('price');
-        $Filter->watervolume_id = $request->input('watervolume_id');
-        $Filter->save();
+        $Vaccum->name = $request->input('name');
+        $Vaccum->price = $request->input('price');
+        $Vaccum->watervolume_id = $request->input('watervolume_id');
+        $Vaccum->save();
 
         return response()->json([
             'success' => true,
@@ -104,9 +102,9 @@ class FilterController extends Controller
 
     public function delete($id)
     {
-        $Filter = Filter::findOrFail($id);
-        $Filter->delete();
-        $message = 'Filter delete successfully!';
-           return redirect('admin/filter')->with('delete', $message );
+        $Vaccum = Vaccum::findOrFail($id);
+        $Vaccum->delete();
+        $message = 'Vaccum delete successfully!';
+           return redirect('admin/vaccum')->with('delete', $message );
     }
 }

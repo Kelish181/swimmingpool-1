@@ -35,6 +35,8 @@
     <!-- Fonts and Codebase framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap">
     <link rel="stylesheet" id="css-main" href="{{asset('admin/assets/css/codebase.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
 </head>
 
 <body>
@@ -165,6 +167,42 @@
                                 <a class="nav-main-link @yield('pump_select')" href="{{route('admin.pump.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
                                     <span class="nav-main-link-name">Pump</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('light_select')" href="{{route('admin.light.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Light</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('inlets_select')" href="{{route('admin.inlets.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Inlets</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('maindrain_select')" href="{{route('admin.maindrain.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Main Drain</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('vaccum_select')" href="{{route('admin.vaccum.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Vaccum</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('heaterpump_select')" href="{{route('admin.heaterpump.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Heater Pump</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('ozone_select')" href="{{route('admin.ozone.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Ozone</span>
                                 </a>
                             </li>
                         </ul>

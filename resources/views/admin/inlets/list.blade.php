@@ -1,14 +1,14 @@
 @extends('admin/layout')
-@section('page_title','Registered Manager')
-@section('registeredmanager_select','active')
+@section('page_title','Inlets')
+@section('inlets_select','active')
 @section('container')
 
 <div class="container-fluid">
-    <h5 class="card-title fw-semibold mb-4">Registered Manager</h5>
+    <h5 class="card-title fw-semibold mb-4">Inlets</h5>
     <div class="card">
         <div class="card-body">
-        <a href="{{ route('admin.manager.manage_manager')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
-                <i class="fa fa-plus"></i> Add Manager
+        <a href="{{ route('admin.inlets.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
+                <i class="fa fa-plus"></i> Add Inlets
                 </a>
                 @if(session()->has('message'))
             
@@ -28,16 +28,13 @@
                   </div>
             @endif  
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable scroll-horizontal" id="FoamTable">
-
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Action</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Ouote Status</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Water Volume</th>
                     </tr>
                 </thead>
             </table>
@@ -53,15 +50,13 @@
         var table = $('#FoamTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.manager.getdatatablemanager') }}",
+            ajax: "{{ route('admin.inlets.getdatatable') }}",
             columns: [
                 { data: 'id'},
                 { data: 'actions'},
                 { data: 'name'},
-                { data: 'address'},
-                { data: 'email'},
-                { data: 'phone'},
-                { data: 'quotestatus'},
+                { data: 'price'},
+                { data: 'water_volume_name'},
             ],
             lengthMenu: [[50, 100, -1], [50, 100, 'All']],
         });

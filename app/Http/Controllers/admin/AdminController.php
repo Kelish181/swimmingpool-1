@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use DataTables;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -46,7 +47,7 @@ class AdminController extends Controller
                 $request->session()->put('ADMIN_LOGIN',true);
                 $request->session()->put('ADMIN_ID',$result->id);
                 // $request->session()->put('NAME',$result->name);
-                // $request->session()->put('USER_TYPE',$result->usertype);
+                $request->session()->put('USER_TYPE',$result->user_type);
                 return redirect('admin/dashboard');
             }else{
                 $request->session()->flash('error','Please enter correct password');
@@ -65,8 +66,34 @@ class AdminController extends Controller
 
     //User
     public function list(){
+        
+        return view('admin.register_user.list');
+    }
+
+    public function getdatatable(Request $request)
+    {
         $result['user'] = User::where('user_type', 1)->get();
-        return view('admin.register_user.list', $result);
+    
+        $dataTable = Datatables::of($result['user'])
+            ->addIndexColumn()
+            ->addColumn('actions', function ($data) {
+                $html = '<a href="' . route('admin.user.user_edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                            <i class="fa fa-edit"></i>
+                        </a>&nbsp;
+                        <a href="' . route('admin.user.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                            <i class="fa fa-trash"></i>
+                        </a>';
+                return $html;
+            })
+            ->editColumn('id', function ($data) {
+                static $index = 1;
+                return $index++;
+            })
+            ->rawColumns(['actions'])
+            ->make(true); // Use true to enable JSON response
+    
+        return $dataTable;
+        // return response()->json($dataTable, 200);
     }
 
     public function manage_user(Request $request, $id = "")
@@ -134,9 +161,36 @@ class AdminController extends Controller
 
         //manager 
 public function listmanager(){
-    $result['user'] = User::where('user_type', 2)->get();
-    return view('admin.register_manager.list', $result);
+    
+    return view('admin.register_manager.list');
 }
+
+public function getdatatablemanager(Request $request)
+    {
+        $result['user'] = User::where('user_type', 2)->get();
+    
+        $dataTable = Datatables::of($result['user'])
+            ->addIndexColumn()
+            ->addColumn('actions', function ($data) {
+                $html = '<a href="' . route('admin.manager.manager_edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                            <i class="fa fa-edit"></i>
+                        </a>&nbsp;
+                        <a href="' . route('admin.manager.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                            <i class="fa fa-trash"></i>
+                        </a>';
+                return $html;
+            })
+            ->editColumn('id', function ($data) {
+                static $index = 1;
+                return $index++;
+            })
+            ->rawColumns(['actions'])
+            ->make(true); // Use true to enable JSON response
+    
+        return $dataTable;
+        // return response()->json($dataTable, 200);
+    }
+
 
 public function manage_manager(Request $request, $id = "")
 {
@@ -203,9 +257,35 @@ return response()->json([
 
     //staff 
 public function liststaff(){
-    $result['user'] = User::where('user_type', 3)->get();
-    return view('admin.register_staffs.list', $result);
+    
+    return view('admin.register_staffs.list');
 }
+
+public function getdatatablestaff(Request $request)
+    {
+        $result['user'] = User::where('user_type', 3)->get();
+    
+        $dataTable = Datatables::of($result['user'])
+            ->addIndexColumn()
+            ->addColumn('actions', function ($data) {
+                $html = '<a href="' . route('admin.staff.staff_edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                            <i class="fa fa-edit"></i>
+                        </a>&nbsp;
+                        <a href="' . route('admin.staff.delete', [$data->id]) . '" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete Category" onclick="return confirm(\'Are you sure you want to delete this item?\');">
+                            <i class="fa fa-trash"></i>
+                        </a>';
+                return $html;
+            })
+            ->editColumn('id', function ($data) {
+                static $index = 1;
+                return $index++;
+            })
+            ->rawColumns(['actions'])
+            ->make(true); // Use true to enable JSON response
+    
+        return $dataTable;
+        // return response()->json($dataTable, 200);
+    }
 
 public function manage_staff(Request $request, $id = "")
 {
