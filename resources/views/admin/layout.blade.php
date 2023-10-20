@@ -114,86 +114,92 @@
                                     <span class="nav-main-link-name">Dashboard</span>
                                 </a>
                             </li>
-                            <b class="ms-2 m-1">Users</b>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('registereduser_select')" href="{{route('admin.user.list')}}">
-                                    <i class="nav-main-link-icon fa fa-address-book"></i>
-                                    <span class="nav-main-link-name">Registered User</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('registeredmanager_select')" href="{{route('admin.manager.list')}}">
-                                    <i class="nav-main-link-icon fa fa-address-book"></i>
-                                    <span class="nav-main-link-name">Registered Managers</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('registeredstaff_select')" href="{{route('admin.staff.list')}}">
-                                    <i class="nav-main-link-icon fa fa-address-book"></i>
-                                    <span class="nav-main-link-name">Registered Staffs</span>
-                                </a>
-                            </li>
-                            <b class="ms-2 m-1">INSTALLATION</b>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('sacrificialpool_select')" href="{{route('admin.sacrificialpool.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Sacrificial Pools</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('watervolume_select')" href="{{route('admin.watervolume.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Water Volume</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('filter_select')" href="{{route('admin.filter.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Filter</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('pump_select')" href="{{route('admin.pump.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Pump</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('light_select')" href="{{route('admin.light.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Light</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('inlets_select')" href="{{route('admin.inlets.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Inlets</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('maindrain_select')" href="{{route('admin.maindrain.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Main Drain</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('vaccum_select')" href="{{route('admin.vaccum.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Vaccum</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('heaterpump_select')" href="{{route('admin.heaterpump.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Heater Pump</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link @yield('ozone_select')" href="{{route('admin.ozone.list')}}">
-                                    <i class="nav-main-link-icon fa fa-list"></i>
-                                    <span class="nav-main-link-name">Ozone</span>
-                                </a>
-                            </li>
+                            @if (Session()->get('USER_TYPE') == 1 || Session()->get('USER_TYPE') == 2 || Session()->get('USER_TYPE') == 3)
+    
+    @if(Session()->get('USER_TYPE') == 1)
+    <b class="ms-2 m-1">Users</b>
+        <li class="nav-main-item">
+            <a class="nav-main-link @yield('registereduser_select')" href="{{route('admin.user.list')}}">
+                <i class="nav-main-link-icon fa fa-address-book"></i>
+                <span class="nav-main-link-name">Registered User</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link @yield('registeredmanager_select')" href="{{route('admin.manager.list')}}">
+                <i class="nav-main-link-icon fa fa-address-book"></i>
+                <span class="nav-main-link-name">Registered Managers</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link @yield('registeredstaff_select')" href="{{route('admin.staff.list')}}">
+                <i class="nav-main-link-icon fa fa-address-book"></i>
+                <span class="nav-main-link-name">Registered Staffs</span>
+            </a>
+        </li>
+    @endif
+    <b class="ms-2 m-1">INSTALLATION</b>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('sacrificialpool_select')" href="{{route('admin.sacrificialpool.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Sacrificial Pools</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('watervolume_select')" href="{{route('admin.watervolume.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Water Volume</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('filter_select')" href="{{route('admin.filter.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Filter</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('pump_select')" href="{{route('admin.pump.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Pump</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('light_select')" href="{{route('admin.light.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Light</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('inlets_select')" href="{{route('admin.inlets.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Inlets</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('maindrain_select')" href="{{route('admin.maindrain.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Main Drain</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('vaccum_select')" href="{{route('admin.vaccum.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Vacuum</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('heaterpump_select')" href="{{route('admin.heaterpump.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Heater Pump</span>
+        </a>
+    </li>
+    <li class="nav-main-item">
+        <a class="nav-main-link @yield('ozone_select')" href="{{route('admin.ozone.list')}}">
+            <i class="nav-main-link-icon fa fa-list"></i>
+            <span class="nav-main-link-name">Ozone</span>
+        </a>
+    </li>
+@endif
+
                         </ul>
                     </div>
                     <!-- END Side Navigation -->
