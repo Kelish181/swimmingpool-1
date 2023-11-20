@@ -206,6 +206,30 @@
                                     <span class="nav-main-link-name">Ozone</span>
                                 </a>
                             </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('slider_select')" href="{{route('admin.slider.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Slider</span>
+                                </a>
+                            </li>
+                           <li class="nav-main-item">
+                                <a class="nav-main-link @yield('about_select')" href="{{route('admin.about.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">About US</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('category_select')" href="{{route('admin.category.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Category</span>
+                                </a>
+                            </li>
+                             <li class="nav-main-item">
+                                <a class="nav-main-link @yield('categoryimages_select')" href="{{route('admin.categoryimages.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Category Images</span>
+                                </a>
+                            </li>
                             @endif
 
                         </ul>

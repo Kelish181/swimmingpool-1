@@ -12,6 +12,12 @@ use App\Http\Controllers\admin\MaindrainController;
 use App\Http\Controllers\admin\VaccumController;
 use App\Http\Controllers\admin\HeaterpumpController;
 use App\Http\Controllers\admin\OzoneController;
+use App\Http\Controllers\admin\AboutController;
+use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ImgesController;
+
+
 
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
 
@@ -125,6 +131,38 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/ozone/edit/{id}', [OzoneController::class,'manage_ozone'])->name('ozone.edit');
         Route::get('/ozone/delete/{id}', [OzoneController::class,'delete'])->name('ozone.delete');
         Route::post('/ozone', [OzoneController::class,'store'])->name('ozone.store');
+
+        //Slider
+        Route::get('/slider',[AboutController::class,'list'])->name('slider.list');
+        Route::get('/slider/getdatatable', [AboutController::class,'getdatatable'])->name('slider.getdatatable');
+        Route::get('/slider/add', [AboutController::class,'manage_about'])->name('slider.add');
+        Route::get('/slider/edit/{id}', [AboutController::class,'manage_about'])->name('slider.edit');
+        Route::get('/slider/delete/{id}', [AboutController::class,'delete'])->name('slider.delete');
+        Route::post('/slider', [AboutController::class,'manage_process'])->name('slider.manage_process');
+
+        //About2
+        Route::get('/about',[SliderController::class,'list'])->name('about.list');
+        Route::get('/about/getdatatable', [SliderController::class,'getdatatable'])->name('about.getdatatable');
+        Route::get('/about/add', [SliderController::class,'manage_about'])->name('about.add');
+        Route::get('/about/edit/{id}', [SliderController::class,'manage_about'])->name('about.edit');
+        Route::get('/about/delete/{id}', [SliderController::class,'delete'])->name('about.delete');
+        Route::post('/about', [SliderController::class,'manage_process'])->name('about.manage_process');
+
+        //Category
+        Route::get('/category',[CategoryController::class,'list'])->name('category.list');
+        Route::get('/category/getdatatable', [CategoryController::class,'getdatatable'])->name('category.getdatatable');
+        Route::get('/category/add', [CategoryController::class,'manage_about'])->name('category.add');
+        Route::get('/category/edit/{id}', [CategoryController::class,'manage_about'])->name('category.edit');
+        Route::get('/category/delete/{id}', [CategoryController::class,'delete'])->name('category.delete');
+        Route::post('/category', [CategoryController::class,'manage_process'])->name('category.manage_process');
+
+        //Category Images
+        Route::get('/categoryimages',[ImgesController::class,'list'])->name('categoryimages.list');
+        Route::get('/categoryimages/getdatatable', [ImgesController::class,'getdatatable'])->name('categoryimages.getdatatable');
+        Route::get('/categoryimages/add', [ImgesController::class,'manage_about'])->name('categoryimages.add');
+        Route::get('/categoryimages/edit/{id}', [ImgesController::class,'manage_about'])->name('categoryimages.edit');
+        Route::get('/categoryimages/delete/{id}', [ImgesController::class,'delete'])->name('categoryimages.delete');
+        Route::post('/categoryimages', [ImgesController::class,'manage_process'])->name('categoryimages.manage_process');
     });
 });
 
