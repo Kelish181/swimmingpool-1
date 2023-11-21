@@ -4,7 +4,7 @@
 @section('container')
 
 <div class="container-fluid">
-    <h5 class="card-title fw-semibold mb-4">Category Name</h5>
+    <h5 class="card-title fw-semibold mb-4">Category Images</h5>
     <div class="card">
         <div class="card-body">
               <a href="{{ route('admin.categoryimages.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Category Images">
@@ -32,6 +32,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Action</th>
+                        <th scope="col">Category Name</th>
                         <th scope="col">Category Images</th>
                     </tr>
                 </thead>
@@ -48,11 +49,19 @@
         var table = $('#FoamTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.category.getdatatable') }}",
+            ajax: "{{ route('admin.categoryimages.getdatatable') }}",
             columns: [
                 { data: 'id'},
-                { data: 'actions'},     
-                { data: 'name'},
+                { data: 'actions'},
+                { data: 'category_name'},     
+               {
+    data: 'images',
+    render: function(data, type, full, meta) {
+        var baseUrl = 'assets/media/categoryimages/';
+        var imageUrl = baseUrl + data;
+        return '<img src="' + imageUrl + '" alt="Image" style="width: 200px; height: 100px;">';
+    }
+},
             ],
             lengthMenu: [[50, 100, -1], [50, 100, 'All']],
         });

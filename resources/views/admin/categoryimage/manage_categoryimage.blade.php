@@ -8,13 +8,22 @@
                 <h5 class="card-title fw-semibold mb-4">Category Images</h5>
                 <div class="card">
                     <div class="card-body">
-                      <form id="productform" >
+                      <form id="productform" enctype="multipart/form-data" >
                             @csrf   
                             <input type="hidden" value="{{$id ?? '0'}}" name="id">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Category Name</label>
+                                <select class="form-control" name="c_id">
+                                <option disabled selected value="">Select Category Name</option>
+                                    @foreach($category as $list)
+                                        <option value="{{ $list->id ?? '' }}" @if($c_id == $list->id) selected @endif>{{ $list->c_name ?? '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Category Images</label>
-                                <input type="file" class="form-control" id="name"
-                                    aria-describedby="emailHelp" name="name" value="{{$name ?? ''}}" placeholder="Enter Category Images" >
+                                <input type="file" class="form-control" id="images"
+                                    aria-describedby="emailHelp" name="images[]" multiple value="{{$images ?? ''}}" placeholder="Enter Category Images" >
                             </div>
                             <button  value="submit" id="submit" class="btn btn-primary">Submit</button>
                         </form>

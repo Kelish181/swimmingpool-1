@@ -26,9 +26,11 @@ class SliderController extends Controller
         $dataTable = Datatables::of($About)
                     ->addIndexColumn()
                     ->addColumn('actions', function ($data) {
-                        $html = '<a href="' . route('admin.about.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
+                        $html = '<div style="text-align:center;"> 
+                        <a href="' . route('admin.about.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
                                     <i class="fa fa-edit"></i>
-                                </a>';
+                                </a>
+                                <div>';
                         return $html;
                     })                    
                     ->editColumn('id', function ($data) {

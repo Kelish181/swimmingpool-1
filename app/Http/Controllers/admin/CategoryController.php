@@ -5,9 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Cimage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+use File;
 class CategoryController extends Controller
 {
     public function list()
@@ -48,11 +50,14 @@ class CategoryController extends Controller
         if ($id > 0) {
             $About = Category::find($id);
             $result['c_name'] = $About->c_name;
+            $result['Cimages'] = Cimage::where('c_id',$id)->get();
             $result['id'] = $About->id;
         } else {
             $result['c_name'] = '';
             $result['id'] = '';
         }
+
+         $result['cimage'] = Cimage::get();
         return view('admin.category.manage_category', $result);
     }
 
@@ -71,13 +76,36 @@ class CategoryController extends Controller
     }
 
     $message = "";
-    $about = ($request->post('id') > 0) ? Category::find($request->post('id')) : new Category;
+    // $Category = ($request->post('id') > 0) ? Category::find($request->post('id')) : new Category;
+        // return $Category;
+    $id = $request->input('id');
+    if ($id > 0) {
+        $Category = Category::find($id);
+    } else {
+        $Category = new Category;
+    }
 
     
-    $about->c_name = $request->post('c_name');
-    $about->save();
+    // return $Category->id;
+    
+    $Category->c_name = $request->post('c_name');
+    $Category->save();
+    if ($request->hasFile('image')) {
+        foreach ($request->file('image') as $file) {
+            if ($file->isValid()) {
+                $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                $upload_path = 'admin/assets/media/categoryimages';
 
-    $message = $about->wasRecentlyCreated ? "New About Us Uploaded!" : "About Us Updated!";
+                $file->move($upload_path, $name);
+
+                $Cimage = new Cimage;
+                $Cimage->c_id =  $Category->id;
+                $Cimage->image =  $name;
+                $Cimage->save();
+            }
+        }
+    }
+    $message = $Category->wasRecentlyCreated ? "New About Us Uploaded!" : "About Us Updated!";
 
     return response()->json([
         'success' => true,
@@ -85,7 +113,18 @@ class CategoryController extends Controller
     ]);
 }
 
+    public function delete_category_image(Request $request, $id = "",)
+{
+    $Cimages = Cimage::find($id);
+    $image_path = "admin/assets/media/categoryimages".$Cimages->image;
 
+        if(File::exists($image_path)) {
+        File::delete($image_path);
+        }
+        $Cimages = Cimage::find($id)->delete();
+
+    return redirect()->back()->with('success', 'Product image(s) deleted successfully');
+}
     //Delete
     public function delete($id)
     {

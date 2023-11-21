@@ -16,6 +16,9 @@ use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ImgesController;
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\admin\FooterController;
 
 
 
@@ -155,14 +158,47 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/category/edit/{id}', [CategoryController::class,'manage_about'])->name('category.edit');
         Route::get('/category/delete/{id}', [CategoryController::class,'delete'])->name('category.delete');
         Route::post('/category', [CategoryController::class,'manage_process'])->name('category.manage_process');
+        Route::get('/category/delete/image/{id}',[CategoryController::class,'delete_category_image'])->name('category.image.delete');
+
+
+
+
 
         //Category Images
         Route::get('/categoryimages',[ImgesController::class,'list'])->name('categoryimages.list');
         Route::get('/categoryimages/getdatatable', [ImgesController::class,'getdatatable'])->name('categoryimages.getdatatable');
-        Route::get('/categoryimages/add', [ImgesController::class,'manage_about'])->name('categoryimages.add');
-        Route::get('/categoryimages/edit/{id}', [ImgesController::class,'manage_about'])->name('categoryimages.edit');
+        Route::get('/categoryimages/add', [ImgesController::class,'manage_images'])->name('categoryimages.add');
+        Route::get('/categoryimages/edit/{id}', [ImgesController::class,'manage_images'])->name('categoryimages.edit');
         Route::get('/categoryimages/delete/{id}', [ImgesController::class,'delete'])->name('categoryimages.delete');
         Route::post('/categoryimages', [ImgesController::class,'manage_process'])->name('categoryimages.manage_process');
+
+        //Blog
+        Route::get('/blog',[BlogController::class,'list'])->name('blog.list');
+        Route::get('/blog/getdatatable', [BlogController::class,'getdatatable'])->name('blog.getdatatable');
+        Route::get('/blog/add', [BlogController::class,'manage_blog'])->name('blog.add');
+        Route::get('/blog/edit/{id}', [BlogController::class,'manage_blog'])->name('blog.edit');
+        Route::get('/blog/delete/{id}', [BlogController::class,'delete'])->name('blog.delete');
+        Route::post('/blog', [BlogController::class,'manage_process'])->name('blog.manage_process');
+
+        //testimonial
+        Route::get('/testimonial',[TestimonialController::class,'list'])->name('testimonial.list');
+        Route::get('/testimonial/getdatatable', [TestimonialController::class,'getdatatable'])->name('testimonial.getdatatable');
+        Route::get('/testimonial/add', [TestimonialController::class,'manage_testimonial'])->name('testimonial.add');
+        Route::get('/testimonial/edit/{id}', [TestimonialController::class,'manage_testimonial'])->name('testimonial.edit');
+        Route::get('/testimonial/delete/{id}', [TestimonialController::class,'delete'])->name('testimonial.delete');
+        Route::post('/testimonial', [TestimonialController::class,'manage_process'])->name('testimonial.manage_process');
+
+        //Footer
+        Route::get('/footer',[FooterController::class,'list'])->name('footer.list');
+        Route::get('/footer/getdatatable', [FooterController::class,'getdatatable'])->name('footer.getdatatable');
+        Route::get('/footer/add', [FooterController::class,'manage_footer'])->name('footer.add');
+        Route::get('/footer/edit/{id}', [FooterController::class,'manage_footer'])->name('footer.edit');
+        Route::get('/footer/delete/{id}', [FooterController::class,'delete'])->name('footer.delete');
+        Route::post('/footer', [FooterController::class,'manage_process'])->name('footer.manage_process');
+
+        //CK Editor:
+        Route::post('admin/uploader/',[BlogController::class,'uploader'])->name('ckeditor.upload');
+
     });
 });
 

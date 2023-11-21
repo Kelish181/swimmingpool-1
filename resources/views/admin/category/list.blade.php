@@ -4,7 +4,7 @@
 @section('container')
 
 <div class="container-fluid">
-    <h5 class="card-title fw-semibold mb-4">About US</h5>
+    <h5 class="card-title fw-semibold mb-4">Category Name</h5>
     <div class="card">
         <div class="card-body">
               <a href="{{ route('admin.category.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Category">

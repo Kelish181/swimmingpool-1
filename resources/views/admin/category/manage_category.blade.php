@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">About US</h5>
+                <h5 class="card-title fw-semibold mb-4">Category Name</h5>
                 <div class="card">
                     <div class="card-body">
                       <form id="productform" >
@@ -16,6 +16,26 @@
                                 <input type="text" class="form-control" id="c_name"
                                     aria-describedby="emailHelp" name="c_name" value="{{$c_name ?? ''}}" placeholder="Enter Category Name" >
                             </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Category Images</label>
+                                                        <input type="file" class="form-control" id="image" name="image[]" accept="image/*" multiple>
+
+                            </div>
+                            <div class="container mb-4">
+                      <div class="row">
+                            @if(isset($Cimages))
+                            @foreach($Cimages as $Cimage)
+                                <div class="col-md-2">
+                                  <div class="img-wrap">
+                                    <a href="{{ route('admin.category.image.delete', $Cimage->id) }}" type="button" class="btn-close" id="delete-image-button" aria-label="Close"></a>
+                                    <img src="{{ asset('admin/assets/media/categoryimages/'. $Cimage->image) }}" class="img-fluid">
+                                    <!-- <button class="close-button">&times;</button> -->
+                                  </div>
+                                </div>
+                            @endforeach
+                            @endif
+                      </div>
+                    </div>
                             <button  value="submit" id="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -74,6 +94,15 @@
     });
 </script>
 
+
+<script>
+
+    document.getElementById('delete-image-button').addEventListener('click', function() {
+        if (confirm('Are you sure you want to delete this image?')) {
+            window.location.href = '{{ route('admin.category.image.delete', ['$id']) }}';
+        }
+    });
+</script>
 @endsection
 
 @section('script')

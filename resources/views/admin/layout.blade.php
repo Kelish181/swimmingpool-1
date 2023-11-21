@@ -224,10 +224,28 @@
                                     <span class="nav-main-link-name">Category</span>
                                 </a>
                             </li>
-                             <li class="nav-main-item">
+                             <!-- <li class="nav-main-item">
                                 <a class="nav-main-link @yield('categoryimages_select')" href="{{route('admin.categoryimages.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
                                     <span class="nav-main-link-name">Category Images</span>
+                                </a>
+                            </li> -->
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('blog_select')" href="{{route('admin.blog.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Blog</span>
+                                </a>
+                            </li>
+                             <li class="nav-main-item">
+                                <a class="nav-main-link @yield('testimonial_select')" href="{{route('admin.testimonial.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Testimonial</span>
+                                </a>
+                            </li>
+                              <li class="nav-main-item">
+                                <a class="nav-main-link @yield('footer_select')" href="{{route('admin.footer.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Footer</span>
                                 </a>
                             </li>
                             @endif

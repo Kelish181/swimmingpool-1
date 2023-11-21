@@ -5,9 +5,13 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cimage;
+use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use DataTables;
+
 
 class ImgesController extends Controller
 {
@@ -19,11 +23,13 @@ class ImgesController extends Controller
     public function getdatatable(Request $request)
     {
 
-        $About = Cimage::select('*');
+        $About['cimage'] = Cimage::join('category' , 'cimage.c_id' , '=' , 'category.id')
+        ->select('cimage.*','category.c_name as category_name')
+        ->get();
         
-        $dataTable = Datatables::of($About)
+        $dataTable = Datatables::of($About['cimage'])
                     ->addIndexColumn()
-                   ->addColumn('actions', function ($data) {
+                    ->addColumn('actions', function ($data) {
                         $html = '<a href="' . route('admin.categoryimages.edit', [$data->id]) . '" type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Edit foam">
                                     <i class="fa fa-edit"></i>
                                 </a>&nbsp;
@@ -31,7 +37,7 @@ class ImgesController extends Controller
                                     <i class="fa fa-trash"></i>
                                 </a>';
                         return $html;
-                    })                  
+                    })                    
                     ->editColumn('id', function ($data) {
                         static $index = 1;
                         return $index++;
@@ -44,24 +50,28 @@ class ImgesController extends Controller
     }
 
     //Edit And Add:
-    public function manage_about(Request $request, $id = "")
+    public function manage_images(Request $request, $id = "")
     {
         if ($id > 0) {
             $About = Cimage::find($id);
-            $result['name'] = $About->name;
+            $result['images'] = $About->images;
             $result['id'] = $About->id;
+            $result['c_id'] = $About->c_id;
         } else {
-            $result['name'] = '';
+            $result['c_id'] = '';
+            $result['images'] = '';
             $result['id'] = '';
         }
+        $result['category'] = Category::get();
+
         return view('admin.categoryimage.manage_categoryimage', $result);
     }
 
      public function manage_process(Request $request)
 {
     $validator = Validator::make($request->all(), [
-        'name' => 'required',
-        
+        'c_id' => 'required' ,   
+        'images' => 'required',
     ]);
 
     if ($validator->fails()) {
@@ -74,21 +84,39 @@ class ImgesController extends Controller
     $message = "";
     $about = ($request->post('id') > 0) ? Cimage::find($request->post('id')) : new Cimage;
 
-    // Function to handle file upload and deletion
-        if ($fileInput = $request->hasfile('name')) {
+   $uploadAndDelete = function ($fileInput, $uploadPath, $folder) use ($about, $request) {
+    if ($request->hasfile($fileInput)) {
+        $oldImages = json_decode($about->{$fileInput}, true) ?? [];
 
-            $file = $request->file($fileInput);
-            $name = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
-            $upload_path = 'admin/assets/media/categoryimages';
-            $file->move($uploadPath, $name);
-
-            $about->{$fileInput} = $name;
-            $about->name = $name;
+        // Delete old images if they exist
+        foreach ($oldImages as $oldImage) {
+            $oldImagePath = $folder . '/' . $oldImage;
+            if (file_exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
         }
 
+        $newImages = [];
+
+        // Upload new images
+        foreach ($request->file($fileInput) as $file) {
+            $name = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $name);
+            $newImages[] = $name;
+        }
+
+        $about->{$fileInput} = json_encode($newImages);
+    }
+};
+
+
+    // Upload and delete for each image
+    
+    $uploadAndDelete('images', 'admin/assets/media/categoryimages', 'admin/assets/media/categoryimages');
+    $about->c_id = $request->input('c_id');
     $about->save();
 
-    $message = $about->wasRecentlyCreated ? "New About Us Uploaded!" : "About Us Updated!";
+    $message = $about->wasRecentlyCreated ? "New Category Images Uploaded!" : "Category Images Updated!";
 
     return response()->json([
         'success' => true,
@@ -97,12 +125,14 @@ class ImgesController extends Controller
 }
 
 
+
+
     //Delete
     public function delete($id)
     {
         $Filter = Cimage::findOrFail($id);
         $Filter->delete();
         $message = 'About Us delete successfully!';
-        return redirect('admin/about')->with('delete', $message );
+        return redirect('admin/categoryimages')->with('delete', $message );
     }
 }
