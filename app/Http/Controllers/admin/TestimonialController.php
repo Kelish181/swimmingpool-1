@@ -69,7 +69,6 @@ class TestimonialController extends Controller
 {
     $validator = Validator::make($request->all(), [
         'desperation' => 'required',
-        'profile' => 'required',
         'heading' => 'required',
         'review' => 'required',
     ]);

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\fornt\SliderController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +19,6 @@ use App\Http\Controllers\fornt\SliderController;
 Route::get('/' , [SliderController::class,'view']);
 
 Route::get('/blog' , [SliderController::class,'index']);
+Route::get('/blog/{id}' , [SliderController::class,'index'])->name('blog');
+
 

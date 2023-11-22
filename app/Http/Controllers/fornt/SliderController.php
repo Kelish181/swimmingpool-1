@@ -26,13 +26,16 @@ class SliderController extends Controller
         $result['testimonial'] = Testimonial::all();
         $result['category'] = Category::all();
         $result['cimage'] = Cimage::all();
-        $result['footers'] = Footers::all();
+        $result['data'] = Footers::all();
         return view('fornt/home', $result);
     }
 
-    public function index()
+    public function index($id)
     {
-        return view('fornt/blog_details');
+         $result['footer'] = Footer::all();
+         $result['data'] = Footers::all();
+        $blog = Blog::find($id);
+        return view('fornt/blog_details' , $result , ['blog' => $blog]);
     }
 
    

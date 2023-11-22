@@ -119,15 +119,16 @@
             @foreach($blog as $list)
             <article class="col-md-12 blog-post">
                 <div class="col-md-3 blog-thumbnail">
-                    <a href="blog-detail.html"><img src="{{asset('admin/assets/media/blog/'.$list->image)}}" class="img-responsive" alt=""></a>
+                    <a href="{{ route('blog', ['id' => $list->id]) }}"><img src="{{asset('admin/assets/media/blog/'.$list->image)}}" class="img-responsive" alt=""></a>
                 </div>
 
                 <div class="col-md-9 blog-desc">
-                    <h4><a href="blog-detail.html">{{$list->heading}}</a></h4>
+                    <h4><a href="{{ route('blog', ['id' => $list->id]) }}">{{$list->heading}}</a></h4>
+                    
                     <div class="post-detail">
                     </div>
                     <p>{!! $list->text !!}</p>
-                    <a href="blog-detail.html" class="btn">read more</a>
+                    <a href="{{ route('blog', ['id' => $list->id]) }}" class="btn">read more</a>
                 </div>
             </article>
             @endforeach

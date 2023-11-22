@@ -73,7 +73,7 @@ class FooterController extends Controller
      public function manage_process(Request $request)
 {
     $validator = Validator::make($request->all(), [
-        'logo' => 'required',
+        
         'desperation' => 'required',
         'location' => 'required',
         'phone' => 'required',

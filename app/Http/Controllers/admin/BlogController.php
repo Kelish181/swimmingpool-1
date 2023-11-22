@@ -66,7 +66,7 @@ class BlogController extends Controller
      public function manage_process(Request $request)
 {
     $validator = Validator::make($request->all(), [
-        'image' => 'required',
+      
         'heading' => 'required',
         'text' => 'required',
     ]);

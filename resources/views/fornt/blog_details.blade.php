@@ -1,6 +1,34 @@
 @extends('fornt/layout')
-@section('page_title','home')
-@section('home_select','active')
-@section('container') 
+@section('page_title','Blog')
+@section('blog_select','active')
+@section('nav_class','white no-background')
+@section('container')
+<!-- ===== Main Page Section ===== -->
+    <section class="main" id="pages">
 
-@endsection  
+        <!-- Title -->
+        <div class="page-title overlay" style="background: url('images/img/slider-bg.jpg'); background-size: cover;">
+            <h2>Blog Detail</h2>
+        </div>
+        <!-- End of Title -->
+
+    </section>
+    <!-- ===== End of Main Page Section ===== -->
+
+
+
+
+    <!-- ===== Start of Blog Post Section ===== -->
+    <section id="blog-post">
+        <div class="container pad80">
+            <!-- Start of Post Title -->
+            <div class="col-md-12 post-title">
+                <h1>{{ $blog->heading }}</h1>
+                <p>{!! $blog->text !!}</p>
+            </div>
+        </div>
+    </section>
+    <!-- ===== End of Comments Section ===== -->
+    
+    
+@endsection
