@@ -49,12 +49,14 @@ class TestimonialController extends Controller
     public function manage_testimonial(Request $request, $id = "")
     {
         if ($id > 0) {
-            $About = Blog::find($id);
+            $About = Testimonial::find($id);
+            $result['desperation'] = $About->desperation;
             $result['profile'] = $About->profile;
             $result['heading'] = $About->heading;
             $result['review'] = $About->review;
             $result['id'] = $About->id;
         } else {
+            $result['desperation'] = '';
             $result['profile'] = '';
             $result['heading'] = '';
             $result['review'] = '';
@@ -66,6 +68,7 @@ class TestimonialController extends Controller
      public function manage_process(Request $request)
 {
     $validator = Validator::make($request->all(), [
+        'desperation' => 'required',
         'profile' => 'required',
         'heading' => 'required',
         'review' => 'required',
@@ -101,6 +104,7 @@ class TestimonialController extends Controller
     // Upload and delete for each image
     $uploadAndDelete('profile', 'admin/assets/media/testimonial', 'admin/assets/media/testimonial');
 
+    $about->desperation = $request->post('desperation');
     $about->heading = $request->post('heading');
     $about->review = $request->post('review');
     $about->save();

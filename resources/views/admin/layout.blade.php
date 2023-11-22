@@ -248,6 +248,12 @@
                                     <span class="nav-main-link-name">Footer</span>
                                 </a>
                             </li>
+                             <li class="nav-main-item">
+                                <a class="nav-main-link @yield('follwas_select')" href="{{route('admin.followas.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Follow AS</span>
+                                </a>
+                            </li>
                             @endif
 
                         </ul>

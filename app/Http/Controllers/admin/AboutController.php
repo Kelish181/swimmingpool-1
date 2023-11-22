@@ -51,17 +51,13 @@ class AboutController extends Controller
         if ($id > 0) {
             $About = About::find($id);
             $result['image'] = $About->image;
-            $result['image2'] = $About->image;
-            $result['image3'] = $About->image;
             $result['heading'] = $About->heading;
             $result['text'] = $About->text;
-            $result['btntext'] = $About->text;
+            $result['btntext'] = $About->btntext;
             $result['link'] = $About->link;
             $result['id'] = $About->id;
         } else {
             $result['image'] = '';
-            $result['image2'] = '' ;
-            $result['image3'] = '';
             $result['heading'] = '';
             $result['text'] = '';
             $result['btntext'] = '';

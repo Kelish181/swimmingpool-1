@@ -12,6 +12,10 @@
                             @csrf   
                             <input type="hidden" value="{{$id ?? '0'}}" name="id">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Desperation</label>
+                                <textarea class="form-control" id="desperation" name="desperation" placeholder="Enter Desperation">{{$desperation ?? ''}}</textarea>
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Profile</label>
                                 <input type="file" class="form-control" id="profile"
                                     aria-describedby="emailHelp" name="profile" value="{{$profile?? ''}}" placeholder="Enter Profile" >

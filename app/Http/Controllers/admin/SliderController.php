@@ -51,7 +51,7 @@ class SliderController extends Controller
             $About = Slider::find($id);
             $result['image'] = $About->image;
             $result['heading'] = $About->heading;
-            $result['text'] = $About->heading;
+            $result['text'] = $About->text;
             $result['id'] = $About->id;
         } else {
             $result['image'] = '';

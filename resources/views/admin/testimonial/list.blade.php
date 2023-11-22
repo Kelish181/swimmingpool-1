@@ -32,9 +32,11 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Action</th>
+                        <th scope="col">Desperation</th>
                         <th scope="col">profile</th>
                         <th scope="col">Heading</th>
                         <th scope="col">Review</th>
+                        
                     </tr>
                 </thead>
             </table>
@@ -53,7 +55,8 @@
             ajax: "{{ route('admin.testimonial.getdatatable') }}",
             columns: [
                 { data: 'id'},
-                { data: 'actions'},     
+                { data: 'actions'},  
+                { data : 'desperation'} ,   
                 {
     data: 'profile',
     render: function(data, type, full, meta) {

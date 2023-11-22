@@ -19,7 +19,7 @@ use App\Http\Controllers\admin\ImgesController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\FooterController;
-
+use App\Http\Controllers\admin\FollwasController;
 
 
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
@@ -195,6 +195,14 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/footer/edit/{id}', [FooterController::class,'manage_footer'])->name('footer.edit');
         Route::get('/footer/delete/{id}', [FooterController::class,'delete'])->name('footer.delete');
         Route::post('/footer', [FooterController::class,'manage_process'])->name('footer.manage_process');
+
+        //Fllow Us:
+        Route::get('/followas',[FollwasController::class,'list'])->name('followas.list');
+        Route::get('/followas/getdatatable', [FollwasController::class,'getdatatable'])->name('followas.getdatatable');
+        Route::get('/followas/add', [FollwasController::class,'manage_followas'])->name('followas.add');
+        Route::get('/followas/edit/{id}', [FollwasController::class,'manage_followas'])->name('followas.edit');
+        Route::get('/followas/delete/{id}', [FollwasController::class,'delete'])->name('followas.delete');
+        Route::post('/followas', [FollwasController::class,'manage_process'])->name('followas.manage_process');
 
         //CK Editor:
         Route::post('admin/uploader/',[BlogController::class,'uploader'])->name('ckeditor.upload');
