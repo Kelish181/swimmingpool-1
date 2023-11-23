@@ -1787,7 +1787,7 @@ footer .copyright p {
 /**************** 7.1 About Page ****************/
 
 section#about .section-title {
-    text-align: left;
+    text-align: center;
 }
 
 section#about .section-title:after {

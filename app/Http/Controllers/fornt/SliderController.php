@@ -37,7 +37,14 @@ class SliderController extends Controller
         $blog = Blog::find($id);
         return view('fornt/blog_details' , $result , ['blog' => $blog]);
     }
-
+    
+    public function about($id)
+    {
+        $result['footer'] = Footer::all();
+         $result['data'] = Footers::all();
+        $about = Slider::find($id);
+        return view('fornt/about_details' , $result , ['about' => $about] );
+    }
    
    
 

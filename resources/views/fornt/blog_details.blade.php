@@ -1,7 +1,6 @@
 @extends('fornt/layout')
 @section('page_title','Blog')
 @section('blog_select','active')
-@section('nav_class','white no-background')
 @section('container')
 <!-- ===== Main Page Section ===== -->
     <section class="main" id="pages">
@@ -23,12 +22,10 @@
         <div class="container pad80">
             <!-- Start of Post Title -->
             <div class="col-md-12 post-title">
-                <h1>{{ $blog->heading }}</h1>
-                <p>{!! $blog->text !!}</p>
+                <h1 style="text-align:center;">{{ $blog->heading }}</h1>
+                <p >{!! $blog->text !!}</p>
             </div>
         </div>
     </section>
     <!-- ===== End of Comments Section ===== -->
-    
-    
 @endsection

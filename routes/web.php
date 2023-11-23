@@ -20,5 +20,5 @@ Route::get('/' , [SliderController::class,'view']);
 
 Route::get('/blog' , [SliderController::class,'index']);
 Route::get('/blog/{id}' , [SliderController::class,'index'])->name('blog');
-
-
+Route::get('/about' ,[SliderController::class,'about']);
+Route::get('/about/{id}' , [SliderController::class,'about'])->name('about');

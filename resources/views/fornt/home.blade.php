@@ -14,7 +14,7 @@
                 <div class="swiper-slide overlay" style="background: url('{{asset('admin/assets/media/about/'.$list->image)}}'); background-size: cover;">
                     <div class="slider-content container">
                         <div class="col-md-12">
-                            <h3>Welcome to <br> <span>{{$list->heading}}</span></h3>
+                            <h3>Welcome to <br> <span >{{$list->heading}}</span></h3>
                             <h4>{{$list->text}}</h4>
                             <div class="cta">
                                 <a href="{{$list->link}}" class="btn" target="_blank">{{$list->btntext}}</a>
@@ -51,10 +51,10 @@
 
                 <div class="col-md-8 main-content">
                     <h2 class="section-title">About Us</h2>
-                    <div class="about-description">
-                        <h4>{{$list->heading}}</h2>
+                    <div class="about-description" >
+                        <h4 style="padding-bottom:20px;">{{$list->heading}}</h2>
                         <p>{{$list->text}}</p>
-                        <a href="about.html" class="btn">Read more</a>
+                        <a href="{{ route('about', ['id' => $list->id]) }}" class="btn">Read more</a>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                 <ul class="gallery-items list-unstyled" id="grid">
                     @foreach($cimage as $list)
                     <!-- image 1 -->
-                    <li class="col-md-2 col-sm-4 col-xs-6" data-groups='["{{$list->id}}"]'>
+                    <li class="col-md-2 col-sm-4 col-xs-6" data-groups='["{{$list->c_id}}"]'>
                         <figure class="gallery-item">
                             <a href="{{asset('admin/assets/media/categoryimages/'.$list->image)}}">
                                 <img src="{{asset('admin/assets/media/categoryimages/'.$list->image)}}" alt="" class="img-responsive">
@@ -127,7 +127,12 @@
                     
                     <div class="post-detail">
                     </div>
-                    <p>{!! $list->text !!}</p>
+                    	<span >{{ Carbon\Carbon::parse($list->created_at)->format('d-m-Y') }}</span>
+                    @php
+                    $blogContent = preg_replace('/<img[^>]+>/i', '', $list->text);
+                    $limitedContent = Str::limit($blogContent, 350, ' ...');
+                    @endphp
+                    <p>{!! $limitedContent !!}</p>
                     <a href="{{ route('blog', ['id' => $list->id]) }}" class="btn">read more</a>
                 </div>
             </article>
