@@ -11,7 +11,8 @@ use App\Models\Blog;
 use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\Cimage;
-use App\MOdels\Footers;
+use App\Models\Footers;
+use App\Models\Setting;
 
 
 class SliderController extends Controller
@@ -27,6 +28,7 @@ class SliderController extends Controller
         $result['category'] = Category::all();
         $result['cimage'] = Cimage::all();
         $result['data'] = Footers::all();
+        $result['setting'] = Setting::all();
         return view('fornt/home', $result);
     }
 
@@ -45,9 +47,4 @@ class SliderController extends Controller
         $about = Slider::find($id);
         return view('fornt/about_details' , $result , ['about' => $about] );
     }
-   
-   
-
-   
-
 }

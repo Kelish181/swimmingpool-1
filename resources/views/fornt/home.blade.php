@@ -76,8 +76,9 @@
 
                 <!-- Start of Gallery Filters -->
                 <ul class="gallery-sorting text-center">
+                     <li><a href="" class="btn-border active" data-group="all">All</a></li>
                     @foreach($category as $list)
-                    <li><a href="#" class="btn-border " data-group="{{$list->id}}">{{$list->c_name}}</a></li>
+                    <li><a href="#" class="btn-border" data-group="{{$list->id}}">{{$list->c_name}}</a></li>
                     @endforeach
                 </ul>
                 <!-- End of Gallery Filters -->
@@ -86,7 +87,7 @@
                 <ul class="gallery-items list-unstyled" id="grid">
                     @foreach($cimage as $list)
                     <!-- image 1 -->
-                    <li class="col-md-2 col-sm-4 col-xs-6" data-groups='["{{$list->c_id}}"]'>
+                    <li class="col-md-2 col-sm-4 col-xs-6" data-groups='["{{ $list->c_id }}"]'>
                         <figure class="gallery-item">
                             <a href="{{asset('admin/assets/media/categoryimages/'.$list->image)}}">
                                 <img src="{{asset('admin/assets/media/categoryimages/'.$list->image)}}" alt="" class="img-responsive">

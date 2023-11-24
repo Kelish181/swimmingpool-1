@@ -40,7 +40,7 @@
     <section class="main" id="pages">
 
         <!-- Title -->
-        <div class="page-title overlay" style="background: url('images/img/slider-bg.jpg'); background-size: cover;">
+        <div class="page-title overlay" style="background: url('{{asset('fornt/assets/images/img/slider-bg.jpg')}}'); background-size: cover;">
             <h2>About Us</h2>
         </div>
         <!-- End of Title -->

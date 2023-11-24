@@ -254,6 +254,13 @@
                                     <span class="nav-main-link-name">Follow AS</span>
                                 </a>
                             </li>
+                              <li class="nav-main-item">
+                                <a class="nav-main-link @yield('setting_select')" href="{{route('admin.setting.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Setting</span>
+                                </a>
+                            </li>
+                            
                             @endif
 
                         </ul>

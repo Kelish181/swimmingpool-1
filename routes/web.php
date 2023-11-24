@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\fornt\SliderController;
+use App\Http\Controllers\fornt\EmailController;
 
 
 /*
@@ -22,3 +23,5 @@ Route::get('/blog' , [SliderController::class,'index']);
 Route::get('/blog/{id}' , [SliderController::class,'index'])->name('blog');
 Route::get('/about' ,[SliderController::class,'about']);
 Route::get('/about/{id}' , [SliderController::class,'about'])->name('about');
+
+Route::post('email',[EmailController::class,'manage_process'])->name('email');

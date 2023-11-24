@@ -20,6 +20,7 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\FooterController;
 use App\Http\Controllers\admin\FollwasController;
+use App\Http\Controllers\admin\SettingController;
 
 
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
@@ -207,6 +208,15 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         //CK Editor:
         Route::post('admin/uploader/',[BlogController::class,'uploader'])->name('ckeditor.upload');
 
+        //Setting:-
+         Route::get('/setting',[SettingController::class,'list'])->name('setting.list');
+        Route::get('/setting/getdatatable', [SettingController::class,'getdatatable'])->name('setting.getdatatable');
+        Route::get('/setting/add', [SettingController::class,'manage_setting'])->name('setting.add');
+        Route::get('/setting/edit/{id}', [SettingController::class,'manage_setting'])->name('setting.edit');
+        Route::get('/setting/delete/{id}', [SettingController::class,'delete'])->name('setting.delete');
+        Route::post('/setting', [SettingController::class,'manage_process'])->name('setting.manage_process');
+
+     
     });
 });
 

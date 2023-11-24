@@ -43,8 +43,10 @@
             <div class="container">
                 <!-- Logo -->
                 <div class="col-md-4">
-                    <a class="navbar-brand" href="index.html"><img src="{{asset('fornt/assets/images/logo.svg')}}" alt="logo"></a>
+                    @foreach($setting as $list)
+                    <a class="navbar-brand" href="index.html"><img src="{{asset('admin/assets/media/setting/'.$list->logo)}}" alt="logo"></a>
                     <!-- INSERT YOUR LOGO HERE -->
+                    @endforeach
                 </div>
 
                 <!-- Main Menu -->
@@ -61,11 +63,18 @@
                     <div class="collapse navbar-collapse pull-right cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="main-nav">
                         <h3>Menu</h3>
                         <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home" >Home</a></li>
+                        <li><a href="#about-us" >About US</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#testimonials">Testimonial</a></li>
+                    </ul>
+                        <!-- <ul class="nav navbar-nav navbar-right">
                             <li class="active dropdown" role="presentation">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">home</a>
                             </li>
                             <li class="dropdown" role="presentation">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About US</i></a>
+                                <a href="#about-us" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About US</i></a>
                             </li>
                             <li class="dropdown" role="presentation">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">blog</a>
@@ -76,7 +85,7 @@
                             <li class="dropdown" role="presentation">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Footer</a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -111,10 +120,11 @@
                 <div class="col-md-2 col-xs-6 footer-nav">
                     <h4>navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="#" target=”_blank”>Home</a></li>
-                        <li><a href="#" target=”_blank”>About US</a></li>
-                        <li><a href="#" target=”_blank”>Blog</a></li>
-                        <li><a href="#" target=”_blank”>Testimonial</a></li>
+                        <li><a href="#home" >Home</a></li>
+                        <li><a href="#about-us" >About US</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#testimonials">Testimonial</a></li>
                     </ul>
                 </div>
                 <!-- End of Footer Navigation -->
@@ -140,15 +150,18 @@
                     <p>{{$list->text}}</p>
                 @endforeach 
                     <!-- Start of Form -->
-                    <form action="#" class="mailchimp">
+                    <form action="{{ route('email') }}" class="" method="post">
+                        @csrf
+                        <input type="hidden" value="{{$id ?? '0'}}" name="id">
                         <!-- subscribe result -->
                         <div id="subscribe-result"></div>
                         <!-- end of subscribe result -->
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="email" name="email" class="form-control" placeholder="Email Address">
-                                <button type="submit" class="btn">Subscribe</button>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required>
+                               <button type="submit" class="btn">Subscribe</button>
                             </div>
+                             
                         </div>
                     </form>
                     <!-- End of Form -->
