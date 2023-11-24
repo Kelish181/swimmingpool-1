@@ -17,7 +17,7 @@
                             <h3>Welcome to <br> <span >{{$list->heading}}</span></h3>
                             <h4>{{$list->text}}</h4>
                             <div class="cta">
-                                <a href="{{$list->link}}" class="btn" target="_blank">{{$list->btntext}}</a>
+                                <a href="{{route('quotation')}}" class="btn" target="_blank">{{$list->btntext}}</a>
                             </div>
                         </div>
                     </div>

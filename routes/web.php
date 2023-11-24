@@ -25,3 +25,4 @@ Route::get('/about' ,[SliderController::class,'about']);
 Route::get('/about/{id}' , [SliderController::class,'about'])->name('about');
 
 Route::post('email',[EmailController::class,'manage_process'])->name('email');
+Route::get('/quotation' ,[SliderController::class,'quotation'])->name('quotation');

@@ -47,4 +47,12 @@ class SliderController extends Controller
         $about = Slider::find($id);
         return view('fornt/about_details' , $result , ['about' => $about] );
     }
+
+    public function quotation()
+    {
+        $result['setting'] = Setting::all();
+        $result['footer'] = Footer::all();
+         $result['data'] = Footers::all();
+        return view('fornt/quotation' , $result);
+    }
 }

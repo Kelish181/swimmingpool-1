@@ -21,7 +21,7 @@ use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\FooterController;
 use App\Http\Controllers\admin\FollwasController;
 use App\Http\Controllers\admin\SettingController;
-
+use App\Http\Controllers\admin\EmailController;
 
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
 
@@ -216,6 +216,9 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/setting/delete/{id}', [SettingController::class,'delete'])->name('setting.delete');
         Route::post('/setting', [SettingController::class,'manage_process'])->name('setting.manage_process');
 
+        //Email:-
+        Route::get('/email',[EmailController::class,'list'])->name('email.list');
+        Route::get('/email/getdatatable', [EmailController::class,'getdatatable'])->name('email.getdatatable');
      
     });
 });

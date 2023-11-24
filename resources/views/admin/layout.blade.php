@@ -260,6 +260,12 @@
                                     <span class="nav-main-link-name">Setting</span>
                                 </a>
                             </li>
+                             <li class="nav-main-item">
+                                <a class="nav-main-link @yield('email_select')" href="{{route('admin.email.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Email</span>
+                                </a>
+                            </li>
                             
                             @endif
 
