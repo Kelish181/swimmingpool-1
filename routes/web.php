@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\fornt\SliderController;
 use App\Http\Controllers\fornt\EmailController;
+use App\Http\Controllers\QuotationController;
 
 
 /*
@@ -26,3 +27,5 @@ Route::get('/about/{id}' , [SliderController::class,'about'])->name('about');
 
 Route::post('email',[EmailController::class,'manage_process'])->name('email');
 Route::get('/quotation' ,[SliderController::class,'quotation'])->name('quotation');
+
+

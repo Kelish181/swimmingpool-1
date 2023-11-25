@@ -13,6 +13,16 @@ use App\Models\Category;
 use App\Models\Cimage;
 use App\Models\Footers;
 use App\Models\Setting;
+use App\Models\Sacrificialpools;
+use App\Models\WaterVolume;
+use App\Models\Filter;
+use App\Models\Pump;
+use App\Models\Light;
+use App\Models\Inlets;
+use App\Models\Maindrain;
+use App\Models\Vaccum;
+use App\Models\Heaterpump;
+use App\Models\Ozone;
 
 
 class SliderController extends Controller
@@ -52,7 +62,17 @@ class SliderController extends Controller
     {
         $result['setting'] = Setting::all();
         $result['footer'] = Footer::all();
-         $result['data'] = Footers::all();
+        $result['data'] = Footers::all();
+         $result['sacrificialpools']=Sacrificialpools::all();
+        $result['watervolume']=WaterVolume::all();
+        $result['filter']=Filter::all();
+        $result['pump']=Pump::all();
+        $result['light']=Light::all();
+        $result['inlets']=Inlets::all();
+        $result['maindrain']=Maindrain::all();
+        $result['vaccum']=Vaccum::all();
+        $result['heaterpump']=Heaterpump::all();
+        $result['ozone']=Ozone::all();
         return view('fornt/quotation' , $result);
     }
 }
