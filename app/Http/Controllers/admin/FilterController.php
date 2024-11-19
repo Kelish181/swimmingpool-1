@@ -9,6 +9,7 @@ use App\Models\Filter;
 use App\Models\admin\Sacrificialpool;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
+use DB;
 
 
 class FilterController extends Controller
@@ -19,11 +20,13 @@ class FilterController extends Controller
     }
 
     public function getdatatable(Request $request)
-{
-    $result['filter'] = Filter::join('water_volume', 'filter.watervolume_id', '=', 'water_volume.id')
-        ->select('filter.*', 'water_volume.name as water_volume_name')
-        ->get(); // Make sure to get the data using get() or first() to fetch the results
-
+    {
+        // $result['filter'] = Filter::all();
+        $result['filter']  = DB::table('filter')
+        ->leftJoin('water_volume','filter.watervolume_id','=','water_volume.id')
+        ->select('filter.id','filter.name','filter.price','water_volume.name as water_name')
+        ->get();
+        
     $dataTable = Datatables::of($result['filter'])
         ->addIndexColumn()
         ->addColumn('actions', function ($data) {
@@ -55,13 +58,17 @@ class FilterController extends Controller
             $result['price'] = $Filter->price;
             $result['id'] = $Filter->id;
             $result['watervolume_id'] = $Filter->watervolume_id;
+            $result['sacrificialpool_id'] = $Filter->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Filter->sacrificialpool_id)->get();
         } else {
             $result['watervolume_id'] = '';
+            $result['sacrificialpool_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.filter.manage_filter', $result);
     }
 
@@ -94,6 +101,7 @@ class FilterController extends Controller
         $Filter->name = $request->input('name');
         $Filter->price = $request->input('price');
         $Filter->watervolume_id = $request->input('watervolume_id');
+        $Filter->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Filter->save();
 
         return response()->json([
@@ -101,6 +109,14 @@ class FilterController extends Controller
             'message' => $message,
         ]);
     }
+    
+ public function getWaterVolumeId(Request $request)
+   { 
+      $sacrificialPoolId = $request->input('sacrificialPoolId');
+      $waterVolume = WaterVolume::where('p_id', $sacrificialPoolId)->get();
+   return response()->json(['waterVolumeId' => $waterVolume]);
+    }
+    
 
     public function delete($id)
     {

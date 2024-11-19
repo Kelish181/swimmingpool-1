@@ -17,11 +17,21 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ImgesController;
 use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\ProductController;
+
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\FooterController;
 use App\Http\Controllers\admin\FollwasController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\EmailController;
+use App\Http\Controllers\admin\skimmerController;
+use App\Http\Controllers\admin\overflowController;
+use App\Http\Controllers\admin\discountController;
+use App\Http\Controllers\admin\infinityController;
+
+
+
+
 
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
 
@@ -31,6 +41,8 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
 
     Route::group(['middleware' => 'admin_auth'], function () {
         Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard');
+        
+        
 
         //user
         Route::get('/registeruser', [AdminController::class,'list'])->name('user.list');
@@ -40,6 +52,59 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/registeruser/delete/{id}', [AdminController::class,'delete'])->name('user.delete');
         Route::post('/registeruser', [AdminController::class,'store'])->name('user.user_store');
 
+     // discount offers
+
+     Route::get('/discount',[discountController::class,'list'])->name('discount.list');
+     Route::get('/discount/getdatatable', [discountController::class,'getdatatable'])->name('discount.getdatatable');
+     //  Route::get('/skimmer/add', [discountController::class,'manage_skimmer'])->name('skimmer.add');
+     //  Route::get('/skimmer/store', [discountController::class, 'store'])->name('skimmer.store');
+      Route::get('/discount/edit/{id}', [discountController::class, 'manage_discount'])->name('discount.edit');
+     //  Route::delete('/skimmer/delete/{id}', [discountController::class, 'delete'])->name('skimmer.delete');
+      Route::post('/discount', [discountController::class,'manage_process'])->name('discount.manage_process');
+
+            //skimmer
+
+            Route::get('/skimmer', [skimmerController::class,'list'])->name('skimmer.list');
+            Route::get('/skimmer/getdatatable', [skimmerController::class,'getdatatable'])->name('skimmer.getdatatable');
+           //  Route::get('/skimmer/add', [skimmerController::class,'manage_skimmer'])->name('skimmer.add');
+           //  Route::get('/skimmer/store', [SkimmerController::class, 'store'])->name('skimmer.store');
+            Route::get('/skimmer/edit/{id}', [SkimmerController::class, 'manage_skimmer'])->name('skimmer.edit');
+           //  Route::delete('/skimmer/delete/{id}', [SkimmerController::class, 'delete'])->name('skimmer.delete');
+            Route::post('/skimmer', [SkimmerController::class,'manage_process'])->name('skimmer.manage_process');
+   
+     
+        //Category
+        Route::get('/category',[CategoryController::class,'list'])->name('category.list');
+        Route::get('/category/getdatatable', [CategoryController::class,'getdatatable'])->name('category.getdatatable');
+        Route::get('/category/add', [CategoryController::class,'manage_about'])->name('category.add');
+        Route::get('/category/edit/{id}', [CategoryController::class,'manage_about'])->name('category.edit');
+        Route::get('/category/delete/{id}', [CategoryController::class,'delete'])->name('category.delete');
+        Route::post('/category', [CategoryController::class,'manage_process'])->name('category.manage_process');
+        Route::get('/category/delete/image/{id}',[CategoryController::class,'delete_category_image'])->name('category.image.delete');
+
+         
+               
+
+         //OverFlow
+         Route::get('/overflow', [overflowController::class,'list'])->name('overflow.list');
+         Route::get('/overflow/getdatatable', [overflowController::class,'getdatatable'])->name('overflow.getdatatable');
+        //  Route::get('/overflow/add', [overflowController::class,'manage_overflow'])->name('overflow.add');
+        //  Route::post('/overflow/store', [overflowController::class, 'store'])->name('overflow.store');
+         Route::get('/overflow/edit/{id}', [overflowController::class,'manage_overflow'])->name('overflow.edit');
+        //  Route::get('/overflow/delete/{id}', [overflowController::class,'delete'])->name('overflow.delete');
+        //  Route::post('/overflow', [overflowController::class,'store'])->name('overflow.store');
+         Route::post('/overflow', [overflowController::class,'manage_process'])->name('overflow.manage_process');
+
+       
+           //Infinity
+         Route::get('/infinity', [infinityController::class,'list'])->name('infinity.list');
+         Route::get('/infinity/getdatatable', [infinityController::class,'getdatatable'])->name('infinity.getdatatable');
+         Route::get('/infinity/edit/{id}', [infinityController::class,'manage_infinity'])->name('infinity.edit');
+         Route::post('/infinity', [infinityController::class,'manage_process'])->name('infinity.manage_process');
+
+        //  Route::get('/infinity/delete/{id}', [skimmerController::class,'delete'])->name('infinity.delete');
+        //  Route::post('/infinity', [skimmerController::class,'store'])->name('infinity.store');
+        
         //manager
         Route::get('/registermanager', [AdminController::class,'listmanager'])->name('manager.list');
         Route::get('/registermanager/getdatatablemanager', [AdminController::class,'getdatatablemanager'])->name('manager.getdatatablemanager');
@@ -72,6 +137,16 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/watervolume/delete/{id}', [WaterVolumeController::class,'delete'])->name('watervolume.delete');
         Route::post('/watervolume', [WaterVolumeController::class,'store'])->name('watervolume.store');
 
+
+        //Pools
+        Route::get('/pools', [WaterVolumeController::class,'pools_list'])->name('pools.list');
+        Route::get('/pools/getdatatable', [WaterVolumeController::class,'poolsgetdatatable'])->name('pools.getdatatable');
+        Route::get('/pools/add', [WaterVolumeController::class,'manage_pools'])->name('pools.add');
+        Route::get('/pools/edit/{id}', [WaterVolumeController::class,'manage_pools'])->name('pools.edit');
+        Route::get('/pools/delete/{id}', [WaterVolumeController::class,'pools_delete'])->name('pools.delete');
+        Route::post('/pools', [WaterVolumeController::class,'pools_store'])->name('pools.store');
+
+
         //filter
         Route::get('/filter', [FilterController::class,'list'])->name('filter.list');
         Route::get('/filter/getdatatable', [FilterController::class,'getdatatable'])->name('filter.getdatatable');
@@ -79,6 +154,7 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/filter/edit/{id}', [FilterController::class,'manage_filter'])->name('filter.edit');
         Route::get('/filter/delete/{id}', [FilterController::class,'delete'])->name('filter.delete');
         Route::post('/filter', [FilterController::class,'store'])->name('filter.store');
+        Route::post('/filter/getWaterVolumeId', [FilterController::class, 'getWaterVolumeId'])->name('getWaterVolumeId');
 
         //pump
         Route::get('/pump', [PumpController::class,'list'])->name('pump.list');
@@ -152,16 +228,6 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/about/delete/{id}', [SliderController::class,'delete'])->name('about.delete');
         Route::post('/about', [SliderController::class,'manage_process'])->name('about.manage_process');
 
-        //Category
-        Route::get('/category',[CategoryController::class,'list'])->name('category.list');
-        Route::get('/category/getdatatable', [CategoryController::class,'getdatatable'])->name('category.getdatatable');
-        Route::get('/category/add', [CategoryController::class,'manage_about'])->name('category.add');
-        Route::get('/category/edit/{id}', [CategoryController::class,'manage_about'])->name('category.edit');
-        Route::get('/category/delete/{id}', [CategoryController::class,'delete'])->name('category.delete');
-        Route::post('/category', [CategoryController::class,'manage_process'])->name('category.manage_process');
-        Route::get('/category/delete/image/{id}',[CategoryController::class,'delete_category_image'])->name('category.image.delete');
-
-
 
 
 
@@ -181,6 +247,14 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::get('/blog/delete/{id}', [BlogController::class,'delete'])->name('blog.delete');
         Route::post('/blog', [BlogController::class,'manage_process'])->name('blog.manage_process');
 
+         //Produts
+         Route::get('/product',[ProductController::class,'list'])->name('product.list');
+         Route::get('/product/getdatatable', [ProductController::class,'getdatatable'])->name('product.getdatatable');
+         Route::get('/product/add', [ProductController::class,'manage_product'])->name('product.add');
+         Route::get('/product/edit/{id}', [ProductController::class,'manage_product'])->name('product.edit');
+         Route::get('/product/delete/{id}', [ProductController::class,'delete'])->name('product.delete');
+         Route::post('/product', [ProductController::class,'manage_process'])->name('product.manage_process');
+ 
         //testimonial
         Route::get('/testimonial',[TestimonialController::class,'list'])->name('testimonial.list');
         Route::get('/testimonial/getdatatable', [TestimonialController::class,'getdatatable'])->name('testimonial.getdatatable');
@@ -207,6 +281,8 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
 
         //CK Editor:
         Route::post('admin/uploader/',[BlogController::class,'uploader'])->name('ckeditor.upload');
+        //CK Editor:
+        Route::post('admin/uploader/',[ProductController::class,'uploader'])->name('ckeditor.upload');
 
         //Setting:-
          Route::get('/setting',[SettingController::class,'list'])->name('setting.list');
@@ -219,6 +295,8 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         //Email:-
         Route::get('/email',[EmailController::class,'list'])->name('email.list');
         Route::get('/email/getdatatable', [EmailController::class,'getdatatable'])->name('email.getdatatable');
+        Route::get('inquiry',[EmailController::class,'inquiry'])->name('inquiry');
+        Route::get('inquiry/getdata',[EmailController::class,'getdata'])->name('inquiry.getdata');
      
     });
 });

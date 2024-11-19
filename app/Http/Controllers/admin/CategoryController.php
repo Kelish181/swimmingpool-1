@@ -105,7 +105,7 @@ class CategoryController extends Controller
             }
         }
     }
-    $message = $Category->wasRecentlyCreated ? "New About Us Uploaded!" : "About Us Updated!";
+    $message = $Category->wasRecentlyCreated ? "New Category Uploaded!" : "Category Updated!";
 
     return response()->json([
         'success' => true,

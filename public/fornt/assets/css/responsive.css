@@ -10,7 +10,6 @@ Version: 1.0
 Author URI: gnodesign.com
 ***************************/
 
-
 /*------------------------------------------
   Responsive Grid Media Queries
 --------------------------------------------*/
@@ -31,7 +30,6 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of min-width 1800px CSS ---- */
 
 /* ---- Start of min-width 1450px CSS ---- */
@@ -51,9 +49,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of min-width 1450px CSS ---- */
-
 
 /* ---- Start of max-width 992px CSS ---- */
 
@@ -129,9 +125,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 992px CSS ---- */
-
 
 /* ---- Start of min-width 480px and max-width 768px CSS ---- */
 
@@ -141,9 +135,7 @@ Author URI: gnodesign.com
 	****************/
 }
 
-
 /* ---- End of min-width 480px and max-width 768px CSS ---- */
-
 
 /* ---- Start of max-width 769px CSS ---- */
 
@@ -151,7 +143,7 @@ Author URI: gnodesign.com
     /**************** 
 		Main Menu
 	****************/
-    .navbar-nav>li>a {
+    .navbar-nav > li > a {
         padding: 15px 0;
     }
     .dropdown-menu {
@@ -230,9 +222,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 769px CSS ---- */
-
 
 /* ---- Start of max-width 767px CSS ---- */
 
@@ -251,9 +241,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 767px CSS ---- */
-
 
 /* ---- Start of max-width 580px CSS ---- */
 
@@ -300,9 +288,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 580px CSS ---- */
-
 
 /* ---- Start of max-width 480px CSS ---- */
 
@@ -321,9 +307,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 480px CSS ---- */
-
 
 /* ---- Start of max-width 420px CSS ---- */
 
@@ -383,9 +367,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 420px CSS ---- */
-
 
 /* ---- Start of max-width 380px CSS ---- */
 
@@ -442,9 +424,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 380px CSS ---- */
-
 
 /* ---- Start of max-width 320px CSS ---- */
 
@@ -463,9 +443,7 @@ Author URI: gnodesign.com
     }
 }
 
-
 /* ---- End of max-width 320px CSS ---- */
-
 
 /* ---- Start of max-height 420px CSS ---- */
 

@@ -5,12 +5,7 @@
 
 <div class="container-fluid">
     <h5 class="card-title fw-semibold mb-4">Water Volume</h5>
-    <div class="card">
-        <div class="card-body">
-        <a href="{{ route('admin.watervolume.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
-                <i class="fa fa-plus"></i> Add Water Volume
-                </a>
-                @if(session()->has('message'))
+     @if(session()->has('message'))
             
             <div class="alert alert-success d-flex align-items-center justify-content-between" role="alert">
                     <p class="mb-0">
@@ -26,13 +21,21 @@
                     </p>
                     <i class="fa fa-fw fa-times ms-2"></i>
                   </div>
-            @endif  
+            @endif 
+    <div class="card">
+        <div class="card-body">
+        <a href="{{ route('admin.watervolume.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
+                <i class="fa fa-plus"></i> Add Water Volume
+                </a>
+                
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable scroll-horizontal" id="FoamTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Action</th>
                         <th scope="col">Name</th>
+                        <th scope="col">pool Name</th>
+                        <th scope="col">Turn OverTime</th>
                     </tr>
                 </thead>
             </table>
@@ -53,6 +56,8 @@
                 { data: 'id'},
                 { data: 'actions'},
                 { data: 'name'},
+                { data: 'modelname'},
+                { data: 'turnover_time'},
             ],
             lengthMenu: [[50, 100, -1], [50, 100, 'All']],
         });

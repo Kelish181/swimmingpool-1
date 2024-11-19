@@ -19,14 +19,12 @@
                     <i class="fa fa-fw fa-times ms-2"></i>
                   </div>
             @endif 
-            @if(session()->has('delete'))
-            <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
-                    <p class="mb-0">
-                    {{session('delete')}}!
-                    </p>
-                    <i class="fa fa-fw fa-times ms-2"></i>
-                  </div>
-            @endif  
+            @if(session('delete'))
+            <div id="delete-message" class="alert alert-danger">
+                {{ session('delete') }}
+            </div>
+        @endif
+        
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable scroll-horizontal" id="FoamTable">
                 <thead>
                     <tr>
@@ -68,5 +66,14 @@
             lengthMenu: [[50, 100, -1], [50, 100, 'All']],
         });
     });
+
+    
+    // Hide the delete message after 5 seconds
+    setTimeout(function() {
+        let deleteMessage = document.getElementById('delete-message');
+        if (deleteMessage) {
+            deleteMessage.style.display = 'none';
+        }
+    }, 3000); 
 </script>
 @endsection  

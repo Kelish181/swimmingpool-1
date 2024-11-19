@@ -34,7 +34,29 @@ class EmailController extends Controller
      
         
         return $dataTable->make();
-        // return response()->json($dataTable, 200);
+    }
+    
+    public function inquiry(Request $request)
+    {
+        return view('admin.inquiry');
+    }
+    
+    public function getdata(Request $request)
+    {
+
+        $inquiry = DB::table('inquiry');
+        
+        $dataTable = Datatables::of($inquiry)
+                    ->addIndexColumn()
+                                       
+                    ->editColumn('id', function ($data) {
+                        static $index = 1;
+                        return $index++;
+                    })
+                    ->rawColumns(['actions']);
+     
+        
+        return $dataTable->make();
     }
 
 }

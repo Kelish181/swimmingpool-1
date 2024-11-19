@@ -11,12 +11,23 @@
                         <form id="productform" >
                             @csrf
                             <input type="hidden" value="{{$id ?? '0'}}" name="id">
+                            
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Sacrificial Pool</label>
+                                <select class="form-control" id="sacrificialpool_id" name="sacrificialpool_id">
+                                <option disabled selected value="">Select Sacrificial Pool</option>
+                                    @foreach($sacrificialpool as $list)
+                                        <option value="{{ $list->id ?? '' }}" @if($sacrificialpool_id == $list->id) selected @endif>{{ $list->modelname ?? '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Water Volune</label>
-                                <select class="form-control" name="watervolume_id">
+                                <select class="form-control" id="watervolume_id" name="watervolume_id">
                                 <option disabled selected value="">Select water volume</option>
                                     @foreach($watervolume as $list)
-                                        <option value="{{ $list->id ?? '' }}" @if($watervolume_id == $list->id) selected @endif>{{ $list->name ?? '' }}</option>
+                                        <option value="{{ $list->id ?? '' }}" @if($watervolume_id == $list->id) selected @endif>{{ $list->name ?? '' }}({{ $list->turnover_time}})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -39,6 +50,32 @@
     </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#sacrificialpool_id').change(function() {
+            var sacrificialPoolId = $(this).val();
+            $.ajax({
+                url: '/admin/filter/getWaterVolumeId',
+                type: 'POST',
+                data: {
+                    sacrificialPoolId: sacrificialPoolId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    $('#watervolume_id').empty(); 
+                    $.each(response.waterVolumeId, function(key, value) {
+                        $('#watervolume_id').append('<option value="' + value.id + '">' + value.name + (value.turnover_time ? ' (' + value.turnover_time + ')' : '') + '</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function() {

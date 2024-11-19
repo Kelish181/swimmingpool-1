@@ -54,13 +54,17 @@ class InletsController extends Controller
             $result['price'] = $Inlets->price;
             $result['id'] = $Inlets->id;
             $result['watervolume_id'] = $Inlets->watervolume_id;
+            $result['sacrificialpool_id'] = $Inlets->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Inlets->sacrificialpool_id)->get();
         } else {
+            $result['sacrificialpool_id'] = '';
             $result['watervolume_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.inlets.manage_inlets', $result);
     }
 
@@ -93,6 +97,7 @@ class InletsController extends Controller
         $Inlets->name = $request->input('name');
         $Inlets->price = $request->input('price');
         $Inlets->watervolume_id = $request->input('watervolume_id');
+        $Inlets->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Inlets->save();
 
         return response()->json([

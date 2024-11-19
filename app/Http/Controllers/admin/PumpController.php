@@ -53,13 +53,17 @@ class PumpController extends Controller
             $result['price'] = $Pump->price;
             $result['id'] = $Pump->id;
             $result['watervolume_id'] = $Pump->watervolume_id;
+            $result['sacrificialpool_id'] = $Pump->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Pump->sacrificialpool_id)->get();
         } else {
             $result['watervolume_id'] = '';
+            $result['sacrificialpool_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.pump.manage_pump', $result);
     }
 
@@ -92,6 +96,7 @@ class PumpController extends Controller
         $Pump->name = $request->input('name');
         $Pump->price = $request->input('price');
         $Pump->watervolume_id = $request->input('watervolume_id');
+        $Pump->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Pump->save();
 
         return response()->json([

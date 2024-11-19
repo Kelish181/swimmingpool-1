@@ -10,7 +10,6 @@ Version: 1.0
 Author URI: gnodesign.com
 ***************************/
 
-
 /*------------------------------------------------------------------
 [Table of contents]
 
@@ -41,14 +40,13 @@ Author URI: gnodesign.com
 9. Contact Us
 -------------------------------------------------------------------*/
 
-
 /* --------------------------------------
     1. Default Typography
 -------------------------------------- */
 
 *,
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 h1,
@@ -57,7 +55,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     margin: 0 !important;
     color: #323232;
@@ -93,7 +91,6 @@ p {
     color: #666;
 }
 
-
 /* --------------------------------------
     2. General Styles
 -------------------------------------- */
@@ -104,11 +101,11 @@ body {
 
 a {
     color: #3cbeee;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 a:hover {
@@ -119,7 +116,7 @@ a:hover,
 a:focus,
 a:visited {
     text-decoration: none !important;
-    outline: none !important
+    outline: none !important;
 }
 
 input {
@@ -177,13 +174,12 @@ img {
     user-drag: none;
 }
 
-
 /* --------------------------------------
     3. Buttons
 -------------------------------------- */
 
 .btn {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -198,11 +194,11 @@ img {
     border-radius: 25px;
     color: #fefefe;
     box-shadow: 5.5px 9px 15px 0px rgba(0, 0, 0, 0.2);
-    -webkit-transition: all .8s ease;
-    -moz-transition: all .8s ease;
-    -ms-transition: all .8s ease;
-    -o-transition: all .8s ease;
-    transition: all .8s ease;
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -ms-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
 }
 
 .btn:focus,
@@ -212,7 +208,7 @@ img {
 }
 
 .btn-border {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -232,7 +228,6 @@ img {
     color: #f6f8f8;
 }
 
-
 /* --------------------------------------
     4. Header 
 -------------------------------------- */
@@ -241,11 +236,11 @@ header {
     position: absolute;
     width: 100%;
     z-index: 999;
-    -webkit-transition: .6s all ease;
-    -moz-transition: .6s all ease;
-    -ms-transition: .6s all ease;
-    -o-transition: .6s all ease;
-    transition: .6s all ease;
+    -webkit-transition: 0.6s all ease;
+    -moz-transition: 0.6s all ease;
+    -ms-transition: 0.6s all ease;
+    -o-transition: 0.6s all ease;
+    transition: 0.6s all ease;
 }
 
 nav.navbar {
@@ -277,7 +272,7 @@ nav.navbar {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    content: '';
+    content: "";
     display: block;
     width: 30px;
     height: 5px;
@@ -306,7 +301,7 @@ div#main-nav h3:after {
 }
 
 .navbar .navbar-nav > li > a {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase;
@@ -329,20 +324,18 @@ div#main-nav h3:after {
     background: none;
 }
 
-.navbar-default .navbar-nav >.active > a,
-.navbar-default .navbar-nav >.active > a:focus,
-.navbar-default .navbar-nav >.active > a:hover {
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
     background: none !important;
     color: #3cbeee !important;
 }
-
 
 /*****  PUSH MENU   *****/
 
 .collapse {
     display: block !important;
 }
-
 
 /* General styles for all menus */
 
@@ -362,19 +355,18 @@ div#main-nav h3:after {
 }
 
 .cbp-spmenu-push-toleft:before {
-    content: '';
+    content: "";
     z-index: 1000;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     position: absolute;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
-
 
 /* Vertical menu that slides from the left or right */
 
@@ -396,7 +388,6 @@ div#main-nav h3:after {
     height: 100% !important;
 }
 
-
 /* Orientation-dependent styles for the content of the menu */
 
 .cbp-spmenu-vertical {
@@ -405,7 +396,6 @@ div#main-nav h3:after {
     top: 0;
     z-index: 1000;
 }
-
 
 /* when menu is open */
 
@@ -425,11 +415,11 @@ div#main-nav h3:after {
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -ms-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    transition: all .4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 .cbp-spmenu .nav > li.open i {
@@ -440,7 +430,6 @@ div#main-nav h3:after {
     transform: rotate(180deg);
     top: 40%;
 }
-
 
 /* Push classes applied to the body */
 
@@ -458,7 +447,6 @@ div#main-nav h3:after {
     left: -260px;
 }
 
-
 /* Transitions */
 
 .cbp-spmenu,
@@ -469,7 +457,6 @@ div#main-nav h3:after {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-
 
 /* Dropdown down */
 
@@ -489,13 +476,13 @@ div#main-nav h3:after {
 
 .open > .dropdown-menu {
     display: block;
-    animation: mymenu-open .5s;
+    animation: mymenu-open 0.5s;
 }
 
 .dropdown-menu li a {
     color: #f6f8f8;
     text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 16px;
     font-weight: 700;
     padding: 15px 0 15px 30px;
@@ -512,18 +499,15 @@ div#main-nav h3:after {
     color: #3cbeee;
 }
 
-
 /* --------------------------------------
     5. Home Page
 -------------------------------------- */
-
 
 /**************** 5.1 Main Section - Slider ****************/
 
 section.main {
     position: relative;
 }
-
 
 /* ---- Slider ---- */
 
@@ -548,12 +532,12 @@ section.main {
     width: 100%;
     height: 100%;
     display: block;
-    content: '';
+    content: "";
     overflow: hidden;
     z-index: 2;
     position: absolute;
     top: 0;
-    opacity: .9;
+    opacity: 0.9;
 }
 
 .overlay:after {
@@ -563,12 +547,12 @@ section.main {
     width: 100%;
     height: 100%;
     display: block;
-    content: '';
+    content: "";
     overflow: hidden;
     z-index: 3;
     position: absolute;
     top: 0;
-    opacity: .3;
+    opacity: 0.3;
 }
 
 .slider-content {
@@ -586,11 +570,11 @@ section.main {
 .slider-content h3 span {
     font-size: 72px;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .slider-content h3:after {
-    content: url('../images/shapes/wave-blue.svg');
+    content: url("../images/shapes/wave-blue.svg");
     display: block;
     width: 70px;
     margin: 0 auto;
@@ -619,7 +603,6 @@ section.main {
     transform: scale(1.1);
 }
 
-
 /* ---- Video Background ---- */
 
 video.video-bg {
@@ -646,10 +629,9 @@ video.video-bg {
 }
 
 .video-bg::-webkit-media-controls-start-playback-button {
-    display: none!important;
+    display: none !important;
     -webkit-appearance: none;
 }
-
 
 /* ---- Paginition ---- */
 
@@ -670,11 +652,11 @@ video.video-bg {
     border: 2px solid #fefefe;
     background: none;
     opacity: 0.6;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .swiper-pagination-bullet-active {
@@ -688,7 +670,6 @@ video.video-bg {
     transform: scale(1.2);
 }
 
-
 /* ---- Scroll Down ---- */
 
 .scroll-down {
@@ -700,7 +681,7 @@ video.video-bg {
 }
 
 .scroll-down:before {
-    content: url('../images/shapes/scroll-shape.svg');
+    content: url("../images/shapes/scroll-shape.svg");
     width: 100px;
     height: 49px;
     display: block;
@@ -723,14 +704,12 @@ video.video-bg {
     font-size: 34px;
 }
 
-
 /* Demos */
 
 #index-image.fullscreen {
     background: url(../images/img/slider-bg.jpg) no-repeat;
     background-size: cover;
 }
-
 
 /**************** 5.2 About Section ****************/
 
@@ -741,7 +720,7 @@ section#about-us {
 }
 
 section#about-us .about-image {
-    background: url('../images/img/about-img.jpg');
+    background: url("../images/img/about-img.jpg");
     background-size: cover;
     min-height: 440px;
     z-index: 1;
@@ -760,13 +739,12 @@ section#about-us .btn {
 section#about-us .logo-overlay {
     width: 300px;
     height: 300px;
-    opacity: .1;
+    opacity: 0.1;
     position: absolute;
     top: -120px;
     right: -100px;
-    background: url('../images/logo-mark.svg');
+    background: url("../images/logo-mark.svg");
 }
-
 
 /**************** 5.3 Gallery Section ****************/
 
@@ -798,14 +776,13 @@ ul#grid.gallery-items li.shuffle-item {
 ul#grid.gallery-items li.shuffle-item img {
     object-fit: cover;
     min-height: 250px;
-    opacity: .7;
+    opacity: 0.7;
     -webkit-transition: all 1.2s ease;
     -moz-transition: all 1.2s ease;
     -ms-transition: all 1.2s ease;
     -o-transition: all 1.2s ease;
     transition: all 1.2s ease;
 }
-
 
 /* CSS Fallback from Modernizr */
 
@@ -829,7 +806,7 @@ ul#grid.gallery-items li.shuffle-item:hover img {
 }
 
 ul#grid.gallery-items li.shuffle-item a:before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     display: block;
@@ -849,8 +826,8 @@ ul#grid.gallery-items li.shuffle-item:hover a:before {
 }
 
 ul#grid.gallery-items li.shuffle-item a:after {
-    content: '\f00e';
-    font-family: 'fontawesome';
+    content: "\f00e";
+    font-family: "fontawesome";
     font-size: 30px;
     color: #f6f8f8;
     position: absolute;
@@ -867,23 +844,22 @@ ul#grid.gallery-items li.shuffle-item a:after {
     transform: translateY(-50%);
     text-align: center;
     opacity: 0;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 ul#grid.gallery-items li.shuffle-item:hover a:after {
-    opacity: .8;
+    opacity: 0.8;
     font-size: 38px;
 }
-
 
 /**************** 5.4 Training Courses Section ****************/
 
 section#courses {
-    background: url('../images/img/courses-bg.png') no-repeat right bottom;
+    background: url("../images/img/courses-bg.png") no-repeat right bottom;
     background-size: cover;
     text-align: center;
 }
@@ -918,7 +894,6 @@ section#courses .training-course .btn {
     z-index: 0;
 }
 
-
 /* when training course is clicked/active */
 
 section#courses .training-course.active img {
@@ -937,7 +912,6 @@ section#courses .training-course.active .btn {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
-
 
 /* btn colors for each course */
 
@@ -961,7 +935,6 @@ section#courses .course-image img {
     height: 400px;
     margin: 0 auto;
 }
-
 
 /**************** 5.5 CountUp Section ****************/
 
@@ -988,7 +961,7 @@ section#countup span {
 }
 
 section#countup:before {
-    content: '';
+    content: "";
     background: url(../images/shapes/wave-top.svg) no-repeat;
     background-position: bottom;
     background-size: cover;
@@ -1001,7 +974,7 @@ section#countup:before {
 }
 
 section#countup:after {
-    content: '';
+    content: "";
     background: url(../images/shapes/wave-bottom.svg) no-repeat;
     background-position: top;
     background-size: cover;
@@ -1012,7 +985,6 @@ section#countup:after {
     width: 100%;
     height: 50px;
 }
-
 
 /**************** 5.6 Blog Section ****************/
 
@@ -1036,8 +1008,8 @@ article.blog-post .blog-thumbnail {
 }
 
 article.blog-post .blog-thumbnail a:after {
-    content: '\f0c1';
-    font-family: 'fontawesome';
+    content: "\f0c1";
+    font-family: "fontawesome";
     color: #f6f8f8;
     font-size: 32px;
     position: absolute;
@@ -1049,11 +1021,11 @@ article.blog-post .blog-thumbnail a:after {
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     opacity: 0;
-    -webkit-transition: all .7s ease;
-    -moz-transition: all .7s ease;
-    -ms-transition: all .7s ease;
-    -o-transition: all .7s ease;
-    transition: all .7s ease;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
 }
 
 article.blog-post .blog-thumbnail:hover a:after {
@@ -1066,16 +1038,16 @@ article.blog-post .blog-thumbnail:hover a:after {
     object-fit: cover;
     height: 260px;
     width: 100%;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 article.blog-post .blog-thumbnail:hover img {
     transform: scale(1.2);
-    opacity: .5;
+    opacity: 0.5;
 }
 
 article.blog-post .date {
@@ -1089,11 +1061,11 @@ article.blog-post .date {
     padding: 10px 15px;
     line-height: 1;
     border-radius: 0 0 0 20px;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 article.blog-post .blog-thumbnail:hover .date {
@@ -1102,7 +1074,7 @@ article.blog-post .blog-thumbnail:hover .date {
 
 .blog-post .date span.day,
 .blog-post .date span.publish-month {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .blog-post .date span.day {
@@ -1124,7 +1096,7 @@ article.blog-post .blog-thumbnail:hover .date {
 .blog-post .blog-desc h4 a {
     color: #323232;
     text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     cursor: pointer;
 }
@@ -1139,7 +1111,7 @@ article.blog-post .blog-thumbnail:hover .date {
 }
 
 .post-detail span:after {
-    content: '|';
+    content: "|";
     padding: 0 7px;
 }
 
@@ -1159,7 +1131,6 @@ section#blog .text-center {
     margin: 0 0 90px 0;
 }
 
-
 /**************** 5.7 Testimonial Section ****************/
 
 section#testimonials {
@@ -1175,7 +1146,7 @@ section#testimonials .section-title {
 }
 
 section#testimonials .section-title span {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 24px;
     color: #a6ecff;
@@ -1202,8 +1173,8 @@ section#testimonials .section-title:after {
 }
 
 #sync1 .item blockquote:before {
-    content: '\f10d';
-    font-family: 'fontawesome';
+    content: "\f10d";
+    font-family: "fontawesome";
     display: inline-block;
     float: left;
     color: #f6f8f8;
@@ -1224,12 +1195,12 @@ section#testimonials .section-title:after {
 #sync2 .item {
     margin: 5px;
     cursor: pointer;
-    opacity: .6;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+    opacity: 0.6;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 #sync2 .item .client-img {
@@ -1263,7 +1234,6 @@ section#testimonials .section-title:after {
     text-transform: uppercase;
 }
 
-
 /**************** 5.8 Pricing Plan Section ****************/
 
 section#pricing {
@@ -1284,7 +1254,7 @@ section#pricing .pricing-wrapper {
 }
 
 .pricing-header:before {
-    content: '';
+    content: "";
     display: block;
     width: 40px;
     height: 40px;
@@ -1298,7 +1268,7 @@ section#pricing .pricing-wrapper {
 }
 
 .pricing-header:after {
-    content: '';
+    content: "";
     display: block;
     width: 12px;
     height: 12px;
@@ -1315,7 +1285,7 @@ section#pricing .pricing-wrapper {
 
 section#pricing .pricing-header .price {
     font-size: 60px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     padding: 15px 0;
 }
@@ -1343,7 +1313,7 @@ ul.pricing-features {
 }
 
 ul.pricing-features li {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     padding: 20px 0;
     border-bottom: 1px solid #eee;
 }
@@ -1351,7 +1321,6 @@ ul.pricing-features li {
 .pricing-footer {
     padding: 30px 0;
 }
-
 
 /* styles for basic, pro & ultra tables */
 
@@ -1375,7 +1344,6 @@ section#pricing #ultra .pricing-footer .btn {
     background: #9f76ab;
 }
 
-
 /**************** 5.9 Signup Section ****************/
 
 section#signup {
@@ -1391,7 +1359,7 @@ section#signup h3 {
 }
 
 section#signup h3 strong {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     color: #f6f8f8;
 }
@@ -1415,9 +1383,7 @@ section#signup .btn {
     margin-top: 25px;
 }
 
-
 /**************** 5.10 Latest Event Section ****************/
-
 
 /* calendar */
 
@@ -1463,7 +1429,7 @@ section#signup .btn {
 .calendar thead {
     font-weight: 600;
     text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .calendar tbody {
@@ -1474,17 +1440,17 @@ section#signup .btn {
     padding: 15px 5px;
     font-size: 18px;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .calendar tbody td:hover {
     cursor: pointer;
     color: #3cbeee;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .calendar .current-day {
@@ -1497,7 +1463,7 @@ section#signup .btn {
 }
 
 td.current-day:after {
-    content: '';
+    content: "";
     display: block;
     width: 32px !important;
     height: 32px !important;
@@ -1524,7 +1490,7 @@ td.event.active {
 }
 
 .calendar .event:after {
-    content: '';
+    content: "";
     display: block;
     background: #3cbeee;
     border-radius: 50%;
@@ -1539,7 +1505,6 @@ td.event.active {
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
 }
-
 
 /* event */
 
@@ -1598,7 +1563,6 @@ section#events .event-details .btn {
     margin: 30px 0;
 }
 
-
 /**************** 5.11 Partners Section ****************/
 
 section#partners {
@@ -1612,11 +1576,11 @@ section#partners {
 
 #partners img {
     width: 130px;
-    -webkit-transition: all .9s ease;
-    -moz-transition: all .9s ease;
-    -ms-transition: all .9s ease;
-    -o-transition: all .9s ease;
-    transition: all .9s ease;
+    -webkit-transition: all 0.9s ease;
+    -moz-transition: all 0.9s ease;
+    -ms-transition: all 0.9s ease;
+    -o-transition: all 0.9s ease;
+    transition: all 0.9s ease;
     margin: 0 auto;
     display: block;
 }
@@ -1629,7 +1593,6 @@ section#partners {
     -o-transform: scale(1.1);
     transform: scale(1.1);
 }
-
 
 /* --------------------------------------
     6. FOOTER
@@ -1644,7 +1607,7 @@ footer#main-footer {
 }
 
 footer#main-footer:before {
-    content: '';
+    content: "";
     background: url(../images/shapes/wave-top-footer.svg) no-repeat;
     background-position: bottom;
     background-size: cover;
@@ -1655,7 +1618,6 @@ footer#main-footer:before {
     width: 100%;
     height: 50px;
 }
-
 
 /* footer top */
 
@@ -1724,7 +1686,7 @@ footer form input.form-control {
     border-radius: 20px;
     padding: 0 0 0 30px;
     width: 90% !important;
-    opacity: .3;
+    opacity: 0.3;
     z-index: 0 !important;
 }
 
@@ -1740,7 +1702,6 @@ footer .btn:hover {
     background: #3cbeee;
 }
 
-
 /* copyright */
 
 footer .copyright {
@@ -1752,7 +1713,6 @@ footer .copyright p {
     margin: 0;
     color: #f6f8f8;
 }
-
 
 /* --------------------------------------
     7. Pages
@@ -1782,7 +1742,6 @@ footer .copyright p {
     width: 100%;
     text-align: center;
 }
-
 
 /**************** 7.1 About Page ****************/
 
@@ -1814,8 +1773,8 @@ section#about .about-vid .vid-container {
 }
 
 section#about .about-vid .vid-container .popup-video:after {
-    content: '\f144';
-    font-family: 'fontawesome';
+    content: "\f144";
+    font-family: "fontawesome";
     display: block;
     color: #f6f8f8;
     font-size: 70px;
@@ -1828,17 +1787,17 @@ section#about .about-vid .vid-container .popup-video:after {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    opacity: .5;
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -ms-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    transition: all .4s ease;
+    opacity: 0.5;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 section#about .about-vid:hover .vid-container .popup-video:after {
     font-size: 80px;
-    opacity: .7;
+    opacity: 0.7;
 }
 
 section#about .about-vid .vid-container img {
@@ -1846,7 +1805,7 @@ section#about .about-vid .vid-container img {
     height: 100%;
     object-fit: cover;
     border-radius: 30px;
-    opacity: .5;
+    opacity: 0.5;
 }
 
 section#about ul.check-list {
@@ -1866,13 +1825,12 @@ section#about ul.check-list li:last-child {
 }
 
 section#about ul.check-list li:before {
-    content: '\f00c';
-    font-family: 'fontawesome';
+    content: "\f00c";
+    font-family: "fontawesome";
     font-size: 18px;
     color: #74cc6c;
     padding-right: 10px;
 }
-
 
 /* Timeline */
 
@@ -1896,7 +1854,7 @@ section#timeline .section-title:after {
 }
 
 .timeline:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -1950,7 +1908,7 @@ section#timeline .section-title:after {
 }
 
 .timeline > li > .timeline-badge:before {
-    content: '';
+    content: "";
     display: block;
     width: 25px;
     height: 25px;
@@ -2026,7 +1984,6 @@ section#timeline .load {
     padding-top: 40px;
 }
 
-
 /**************** 7.2 404 Page ****************/
 
 header#page-404 {
@@ -2064,7 +2021,7 @@ header#page-404 nav {
 
 section#not-found img {
     width: 300px;
-    opacity: .5;
+    opacity: 0.5;
     display: block;
     margin: 0 auto;
 }
@@ -2083,7 +2040,6 @@ section#not-found .error-detail h4 {
     text-transform: uppercase;
     padding: 20px 0;
 }
-
 
 /**************** 7.3 Coming Soon Page ****************/
 
@@ -2132,7 +2088,7 @@ section#coming-soon .countdown li span {
 }
 
 section#coming-soon .countdown li p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #eaeaea;
     font-size: 26px;
     font-weight: 300;
@@ -2155,11 +2111,9 @@ section#coming-soon .coming-content .cta .btn-border:hover {
     color: #3cbeee;
 }
 
-
 /* --------------------------------------
     8. Blog
 -------------------------------------- */
-
 
 /**************** 8.1 Blog Listing ****************/
 
@@ -2170,7 +2124,6 @@ article.blog-listing {
 a#loadMore:focus {
     color: #999;
 }
-
 
 /**************** 8.2 Blog Detail ****************/
 
@@ -2229,8 +2182,8 @@ section#blog-post .post-quote blockquote {
 }
 
 section#blog-post .post-quote blockquote:before {
-    content: '\f10d';
-    font-family: 'fontawesome';
+    content: "\f10d";
+    font-family: "fontawesome";
     display: inline-block;
     float: left;
     color: #f6f8f8;
@@ -2239,12 +2192,12 @@ section#blog-post .post-quote blockquote:before {
     left: 30px;
     top: 0;
     font-style: normal;
-    opacity: .5;
+    opacity: 0.5;
 }
 
 section#blog-post .post-quote blockquote:after {
-    content: '\f10e';
-    font-family: 'fontawesome';
+    content: "\f10e";
+    font-family: "fontawesome";
     display: inline-block;
     float: right;
     color: #f6f8f8;
@@ -2253,7 +2206,7 @@ section#blog-post .post-quote blockquote:after {
     right: 30px;
     top: 0;
     font-style: normal;
-    opacity: .5;
+    opacity: 0.5;
 }
 
 section#blog-post ul.social {
@@ -2291,7 +2244,6 @@ section#blog-post ul.social li #google.btn {
 section#blog-post ul.social li #pinterest.btn {
     background: #df5643;
 }
-
 
 /* Comments Section */
 
@@ -2355,7 +2307,6 @@ section#blog-comments .comments-list .comment-body time {
     color: #999;
 }
 
-
 /* comment replies */
 
 section#blog-comments .comments-list .comment-replies {
@@ -2371,7 +2322,6 @@ section#blog-comments .comments-list .comment-replied {
 section#blog-comments .comments-list .comment-replied:last-child {
     margin-bottom: 0;
 }
-
 
 /* comment form */
 
@@ -2425,7 +2375,6 @@ form#comment-form p {
     font-style: italic;
 }
 
-
 /* --------------------------------------
     9. Contact Us
 -------------------------------------- */
@@ -2448,7 +2397,7 @@ form#contact-form .col-md-12 {
     text-align: center;
 }
 
-form#contact-form input {
+/* form#contact-form input {
     margin: 10px 0;
     height: 60px;
     background: #f6f8f8;
@@ -2456,7 +2405,7 @@ form#contact-form input {
     border-radius: 30px;
     padding-left: 30px;
     box-shadow: 5.5px 9px 15px 0px rgba(0, 0, 0, 0.1);
-}
+} */
 
 form#contact-form input:focus {
     box-shadow: none;
@@ -2493,7 +2442,6 @@ form#contact-form .form-control:-ms-input-placeholder {
     color: #999;
 }
 
-
 /* google maps */
 
 .gmaps {
@@ -2518,11 +2466,10 @@ form#contact-form .form-control:-ms-input-placeholder {
     display: none;
 }
 
-
 /* Contact Ver. 2 */
 
 section.contact:before {
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 100px;
@@ -2533,7 +2480,7 @@ section.contact:before {
 }
 
 section.contact:after {
-    content: '';
+    content: "";
     background: url(../images/shapes/wave-bottom2.svg) no-repeat;
     background-position: top;
     background-size: cover;
@@ -2562,11 +2509,9 @@ section#contact .contact-top {
     float: right;
 }
 
-
 /* --------------------------------------
     x. Animations
 -------------------------------------- */
-
 
 /* Menu Animation */
 

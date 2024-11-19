@@ -54,13 +54,17 @@ class LightController extends Controller
             $result['price'] = $Light->price;
             $result['id'] = $Light->id;
             $result['watervolume_id'] = $Light->watervolume_id;
+            $result['sacrificialpool_id'] = $Light->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Light->sacrificialpool_id)->get();
         } else {
+            $result['sacrificialpool_id'] = '';
             $result['watervolume_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.light.manage_light', $result);
     }
 
@@ -93,6 +97,7 @@ class LightController extends Controller
         $Light->name = $request->input('name');
         $Light->price = $request->input('price');
         $Light->watervolume_id = $request->input('watervolume_id');
+        $Light->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Light->save();
 
         return response()->json([

@@ -55,13 +55,17 @@ class MaindrainController extends Controller
             $result['price'] = $Maindrain->price;
             $result['id'] = $Maindrain->id;
             $result['watervolume_id'] = $Maindrain->watervolume_id;
+            $result['sacrificialpool_id'] = $Maindrain->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Maindrain->sacrificialpool_id)->get();
         } else {
+            $result['sacrificialpool_id'] = '';
             $result['watervolume_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.maindrain.manage_maindrain', $result);
     }
 
@@ -94,6 +98,7 @@ class MaindrainController extends Controller
         $Maindrain->name = $request->input('name');
         $Maindrain->price = $request->input('price');
         $Maindrain->watervolume_id = $request->input('watervolume_id');
+        $Maindrain->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Maindrain->save();
 
         return response()->json([

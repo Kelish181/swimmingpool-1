@@ -54,13 +54,17 @@ class HeaterpumpController extends Controller
             $result['price'] = $Heaterpump->price;
             $result['id'] = $Heaterpump->id;
             $result['watervolume_id'] = $Heaterpump->watervolume_id;
+            $result['sacrificialpool_id'] = $Heaterpump->sacrificialpool_id;
+             $result['watervolume'] = WaterVolume::where('p_id',$Heaterpump->sacrificialpool_id)->get();
         } else {
             $result['watervolume_id'] = '';
+            $result['sacrificialpool_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+             $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.heaterpump.manage_heaterpump', $result);
     }
 
@@ -93,6 +97,7 @@ class HeaterpumpController extends Controller
         $Heaterpump->name = $request->input('name');
         $Heaterpump->price = $request->input('price');
         $Heaterpump->watervolume_id = $request->input('watervolume_id');
+        $Heaterpump->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Heaterpump->save();
 
         return response()->json([

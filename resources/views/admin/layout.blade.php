@@ -127,6 +127,13 @@
                                 </a>
                             </li>
                             <li class="nav-main-item">
+                                <a class="nav-main-link @yield('discount_offer')"
+                                    href="{{route('admin.discount.list')}}">
+                                    <i class="nav-main-link-icon fa fa-address-book"></i>
+                                    <span class="nav-main-link-name">Discount offers</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
                                 <a class="nav-main-link @yield('registeredmanager_select')"
                                     href="{{route('admin.manager.list')}}">
                                     <i class="nav-main-link-icon fa fa-address-book"></i>
@@ -149,6 +156,13 @@
                                     <span class="nav-main-link-name">Sacrificial Pools</span>
                                 </a>
                             </li>
+                            <!-- <li class="nav-main-item">-->
+                            <!--    <a class="nav-main-link @yield('pools_select')"-->
+                            <!--        href="{{route('admin.pools.list')}}">-->
+                            <!--        <i class="nav-main-link-icon fa fa-list"></i>-->
+                            <!--        <span class="nav-main-link-name">Pools</span>-->
+                            <!--    </a>-->
+                            <!--</li>-->
                             <li class="nav-main-item">
                                 <a class="nav-main-link @yield('watervolume_select')"
                                     href="{{route('admin.watervolume.list')}}">
@@ -156,6 +170,7 @@
                                     <span class="nav-main-link-name">Water Volume</span>
                                 </a>
                             </li>
+                           
                             <li class="nav-main-item">
                                 <a class="nav-main-link @yield('filter_select')" href="{{route('admin.filter.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
@@ -236,6 +251,12 @@
                                     <span class="nav-main-link-name">Blog</span>
                                 </a>
                             </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('product_select')" href="{{route('admin.product.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Product</span>
+                                </a>
+                            </li>
                              <li class="nav-main-item">
                                 <a class="nav-main-link @yield('testimonial_select')" href="{{route('admin.testimonial.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
@@ -264,6 +285,30 @@
                                 <a class="nav-main-link @yield('email_select')" href="{{route('admin.email.list')}}">
                                     <i class="nav-main-link-icon fa fa-list"></i>
                                     <span class="nav-main-link-name">Email</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('inquiry_select')" href="{{route('admin.inquiry')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Inquiry</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('skimmer_select')" href="{{route('admin.skimmer.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Skimmer</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('OverFlow_select')" href="{{route('admin.overflow.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">Infinity</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link @yield('Infinity_select')" href="{{route('admin.infinity.list')}}">
+                                    <i class="nav-main-link-icon fa fa-list"></i>
+                                    <span class="nav-main-link-name">OverFlow</span>
                                 </a>
                             </li>
                             

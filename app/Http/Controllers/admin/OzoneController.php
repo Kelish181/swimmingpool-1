@@ -54,13 +54,18 @@ class OzoneController extends Controller
             $result['price'] = $Ozone->price;
             $result['id'] = $Ozone->id;
             $result['watervolume_id'] = $Ozone->watervolume_id;
+            $result['sacrificialpool_id'] = $Ozone->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Ozone->sacrificialpool_id)->get();
         } else {
             $result['watervolume_id'] = '';
+            $result['sacrificialpool_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+         $result['sacrificialpool'] = Sacrificialpool::all();
+        
         return view('admin.ozone.manage_ozone', $result);
     }
 
@@ -93,6 +98,7 @@ class OzoneController extends Controller
         $Ozone->name = $request->input('name');
         $Ozone->price = $request->input('price');
         $Ozone->watervolume_id = $request->input('watervolume_id');
+        $Ozone->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Ozone->save();
 
         return response()->json([

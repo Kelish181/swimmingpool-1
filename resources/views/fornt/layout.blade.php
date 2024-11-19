@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
 
     <!-- ===== Meta Tags - Description for Search Engine purposes ===== -->
-    <meta name="description" content="Swimmerland - Water Park HTML Template">
-    <meta name="keywords" content="water park, pool, summer, swimming, swimmerland">
+    <meta name="description" content="Swimming Pool">
+    <meta name="keywords" content="Swimming Pool">
     <meta name="author" content="GnoDesign">
 
     <!-- ===== Website Title ===== -->
-    <title>Swimmerland - Water Park HTML Template</title>
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <title>Swimming Pool</title>
+    <link rel="shortcut icon" href="{{ asset('fornt/assets/images/favicon.png') }}" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.html">
 
     <!-- ===== Google Fonts ===== -->
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('fornt/assets/css/owl.carousel.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('fornt/assets/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('fornt/assets/css/responsive.css')}}">
+	@livewireStyles
 </head>
 
 <body>
@@ -44,29 +45,46 @@
                 <!-- Logo -->
                 <div class="col-md-4">
                     @foreach($setting as $list)
-                    <a class="navbar-brand" href="index.html"><img src="{{asset('admin/assets/media/setting/'.$list->logo)}}" alt="logo"></a>
+                    <a class="navbar-brand" href="" style="font-size: 45px; color: white;font-weight: bold;">Swimmingpool</a>
                     <!-- INSERT YOUR LOGO HERE -->
                     @endforeach
                 </div>
 
-                <!-- Main Menu -->
-                <div class="col-md-8">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle toggle-menu menu-right push-body" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
+               <!-- Main Menu -->
+<div class="col-md-8">
+    <div class="navbar-header">
+        <!-- Menu Toggle Button -->
+        <button type="button" class="navbar-toggle toggle-menu menu-right push-body" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+        <!-- Cart Icon -->
+        
+        <div id="cart-icon" onclick="openCart()" style="top: 10px; right: 70px; cursor: pointer; font-size: 24px; color: white;">
+            <i class="bi bi-cart" style="position: relative; color: white; font-size: 30px; margin-left: 102%; margin-bottom: 50px; top: -50px;"></i>
+            <span id="cart-count" style="background:  #3cbeee; color: white; padding: 2px 6px; font-size: 15px; border-radius: 50%; margin-right: -40px; position: absolute; top: -3px; right: -8px; z-index: 10;">
+                0
+            </span>
+        </div>
+        
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    </div>
+
+                    
 
                     <div class="collapse navbar-collapse pull-right cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="main-nav">
                         <h3>Menu</h3>
                         <ul class="nav navbar-nav navbar-right">
                         <li><a href="#home" >Home</a></li>
-                        <li><a href="#about-us" >About US</a></li>
+                        <li><a href="#about-us">About US</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#blog">Blog</a></li>
+                        <li><a href="#product">Product</a></li>
                         <li><a href="#testimonials">Testimonial</a></li>
                     </ul>
                         <!-- <ul class="nav navbar-nav navbar-right">
@@ -105,8 +123,7 @@
                
                 <div class="col-md-4 col-xs-6 about">
                      @foreach($footer as $list)
-                    <img src="{{asset('admin/assets/media/footer/'.$list->logo)}}" alt="">
-                    <p>{{$list->desperation}}</p>
+                     <a class="navbar-brand" href="" style="font-size: 25px;color: white;font-weight: bold;">Swimmingpool</a> <br><p>{{$list->desperation}}</p>
                     <ul>
                         <li><span><i class="fa fa-map-marker"></i>{{$list->location}}</span></li>
                         <li><span><i class="fa fa-phone"></i>{{$list->phone}}</span></li>
@@ -198,5 +215,45 @@
     <script src="{{asset('fornt/assets/js/calendar.min.js')}}"></script>
     <script src="{{asset('fornt/assets/js/jquery.ajaxchimp.js')}}"></script>
     <script src="{{asset('fornt/assets/js/custom.js')}}"></script>
+@livewireScripts
 </body>
+
+<script>
+    
+// add to cart //
+document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            const productName = this.getAttribute('data-name');
+            const productPrice = this.getAttribute('data-price');
+
+            // Send data to the backend to add to cart
+            fetch('/add-to-cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ id: productId, name: productName, price: productPrice })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update cart count in the icon
+                    const cartCount = document.getElementById('cart-count');
+                    cartCount.textContent = data.cartItemCount;
+
+                    // Show a success message
+                    // alert('Product added to cart!');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+    // Open Cart Page
+    function openCart() {
+        window.location.href = '/cart';
+    }   
+</script>
 </html>

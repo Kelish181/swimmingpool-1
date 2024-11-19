@@ -53,13 +53,17 @@ class VaccumController extends Controller
             $result['price'] = $Vaccum->price;
             $result['id'] = $Vaccum->id;
             $result['watervolume_id'] = $Vaccum->watervolume_id;
+            $result['sacrificialpool_id'] = $Vaccum->sacrificialpool_id;
+            $result['watervolume'] = WaterVolume::where('p_id',$Vaccum->sacrificialpool_id)->get();
         } else {
             $result['watervolume_id'] = '';
+            $result['sacrificialpool_id'] = '';
             $result['name'] = '';
             $result['price'] = '';
             $result['id'] = '';
+            $result['watervolume'] = [];
         }
-        $result['watervolume'] = WaterVolume::get();
+        $result['sacrificialpool'] = Sacrificialpool::all();
         return view('admin.vaccums.manage_vaccums', $result);
     }
 
@@ -92,6 +96,7 @@ class VaccumController extends Controller
         $Vaccum->name = $request->input('name');
         $Vaccum->price = $request->input('price');
         $Vaccum->watervolume_id = $request->input('watervolume_id');
+        $Vaccum->sacrificialpool_id = $request->input('sacrificialpool_id');
         $Vaccum->save();
 
         return response()->json([

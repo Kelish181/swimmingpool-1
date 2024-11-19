@@ -12,9 +12,41 @@
                             @csrf
                             <input type="hidden" value="{{$id ?? '0'}}" name="id">
                             <div class="mb-3">
+                            <div class="pool_name">
+                                    <label class="form-label">Pool Name</label>
+                                    <select name="p_id"  data-control="select2"
+                                        class="form-select form-select-solid form-select-lg mt-1" required>
+                                        @foreach($pools as $list)
+                                        <option value="{{$list->id}}" @if ($p_id == $list->id) selected @endif>{{$list->modelname}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="modelname"
                                     aria-describedby="emailHelp" name="name" value="{{$name ?? ''}}" placeholder="Enter Name">
+                                    </div>
+                                    <div class="mb-3">
+                                     <div class="pool_name">
+                                    <label class="form-label">Turn Over Time</label>
+                                    <select name="turnover_time"  data-control="select2"
+                                        class="form-select form-select-solid form-select-lg mt-1" required>
+                                        <option value="" selected disabled>Select TurnOver Time</option>
+                                        <option value="4" @if($turnover_time==4) selected @endif>4</option>
+                                        <option value="6" @if($turnover_time==6) selected @endif>6</option>
+                                    </select>
+                                </div>
+                                </div>
+                                    
+                                    <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Water Volume From</label>
+                                <input type="number" class="form-control" name="volume_from" value="{{$volume_from ?? ''}}">
+                                </div>
+                                
+                                <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Water Volume To</label>
+                                <input type="text" class="form-control"  name="volume_to" value="{{$volume_to ?? ''}}">
                             </div>
                             <button  value="submit" id="submit" class="btn btn-primary">Submit</button>
                         </form>

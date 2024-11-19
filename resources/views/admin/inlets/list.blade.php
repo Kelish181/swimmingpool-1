@@ -5,12 +5,7 @@
 
 <div class="container-fluid">
     <h5 class="card-title fw-semibold mb-4">Inlets</h5>
-    <div class="card">
-        <div class="card-body">
-        <a href="{{ route('admin.inlets.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
-                <i class="fa fa-plus"></i> Add Inlets
-                </a>
-                @if(session()->has('message'))
+     @if(session()->has('message'))
             
             <div class="alert alert-success d-flex align-items-center justify-content-between" role="alert">
                     <p class="mb-0">
@@ -26,7 +21,13 @@
                     </p>
                     <i class="fa fa-fw fa-times ms-2"></i>
                   </div>
-            @endif  
+            @endif 
+    <div class="card">
+        <div class="card-body">
+        <a href="{{ route('admin.inlets.add')}}" type="button"   class="btn btn-sm btn-primary float-end mb-2" data-bs-toggle="tooltip" title="Add Catgory">
+                <i class="fa fa-plus"></i> Add Inlets
+                </a>
+                
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable scroll-horizontal" id="FoamTable">
                 <thead>
                     <tr>
